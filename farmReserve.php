@@ -90,9 +90,10 @@
                       $("#datepicker").datepicker("option","maxDate",null);
                       $("#datepicker").datepicker("option","minDate",null);
                       $("#datepicker").datepicker("option","minDate",selectedDate);
-                       $("#start").text($("#datepicker").val());
+                      $("#start").text($("#datepicker").val());
                       sdate = $("#datepicker").val().split("/");
                       sdateObj = new Date(sdate[2], Number(sdate[0])-1, sdate[1]);
+
                    }
                    else{
                       $("#datepicker").datepicker("option","maxDate",selectedDate);
@@ -134,12 +135,17 @@
 		대여비(반년) : <strong><?=$PRICE ?></strong>
 	</br>	
 		<script>
-
-		</script>
-		<? 
-		
-		//$cost = $duration*10000;
-		?>
+			function goreserve(){
+				var start = $("#start").text();
+				var finish = $("#finish").text();
+				var duration = $("#duration").text();
+            <?
+               $fnum = $_GET['farmnum'];
+               $id = $_SESSION['id'];
+            ?>
+            location.href="/web/add_reserve.php?fnum=<?=$fnum?>&id=<?=$id?>&start="+start+"&finish="+finish+"&due="+duration;
+         }   
+        </script>
 		이용달수 : <strong id="duration">0</strong>일
 	</br>	
 		총 예약금액 :<h4> <strog id="costcount">0</strong> 원</h4>
@@ -147,7 +153,7 @@
 
 		<center>
 		<div class = "btn-group">
-		<button id = "reserve" class="btn btn-success">예약하기</button>
+		<button id = "reserve" class="btn btn-success" onclick="goreserve()">예약하기</button>
       	<button id = "back" class="btn btn-default" onclick="history.back()">돌아가기</button>			
 		</div>
 		</center>
