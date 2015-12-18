@@ -1,0 +1,36 @@
+#header
+{
+	margin-top: 50px;
+	text-align: center;
+	padding : 5px;
+}
+#container
+{
+	float: center;
+	overflow: hidden;
+}
+
+#strInfo
+{
+	float: center;
+	overflow: hidden;
+}
+
+#P_name
+{
+	width: 300px;
+}
+ #P_count
+ {
+	width: 300px;
+}
+ #P_cost
+ {
+	width: 300px;
+}
+#contents
+{
+	margin-left: 10%;
+	
+	overflow: hidden;
+}

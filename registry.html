@@ -1,0 +1,145 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+a:link     {color:green;text-decoration:none} 
+a:visited  {color:green;text-decoration:none} 
+a:active   {color:green;text-decoration:none} 
+a:hover    {color:green;text-decoration:none} 
+
+
+.file_input_textbox
+{
+ float: left
+}
+
+.file_input_div
+{
+ position: relative; 
+ width: 100px; 
+ height: 23px; 
+ overflow: hidden;
+}
+
+.file_input_button
+{
+ width: 100px; 
+ position: absolute; 
+ top: 0px;
+ background-color: #33BB00;
+ color: #FFFFFF;
+ border-style: solid;
+}
+
+.file_input_hidden
+{
+ font-size: 45px; 
+ position: absolute; 
+ right: 0px; 
+ top: 0px; 
+ opacity: 0; 
+ 
+ filter: alpha(opacity=0); 
+ -ms-filter: "alpha(opacity=0)"; 
+ -khtml-opacity: 0; 
+ -moz-opacity: 0;
+}
+
+</style>
+
+
+
+<div>
+	<font  SIZE="6" color="green" face="궁서체">
+	   <a href="http://localhost/web/main.html" align="left">WEB FARM</a>
+	</font>
+
+<input type="button"  onclick="location.href='http://localhost//web//login.html'";	style="height: 40px; width:80px; background-color: green; float: right" value="로그인">
+<div>
+	<br/>
+	<br/>
+	<div align="center">
+	<font SIZE="9" color="black" face="돋움">
+	회원 가입
+	</font>
+	</div>
+	<HR size="3" color="black" WIDTH="100%">
+	
+</head>
+<body>
+<br/>
+<br/>
+<form name=registForm action="registry.php" method="post">
+<table align="center">
+	<tr>
+		<td>ID</td>
+		<td></td>
+		<td><input type=text name=id></td>
+	</tr>
+		<td>PASSWORD</td>
+		<td></td>
+		<td><input type=text name=password></td>
+	<tr>
+		<td>이름</td>
+		<td></td>
+		<td><input type=text name=name></td>
+	</tr>
+		<td>사진</td>
+		<td></td>
+	<td>
+		<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+		<div class="file_input_div">
+		<input type="button" value="Search files" class="file_input_button" />
+		<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
+	</div>
+	</td>
+	</tr>
+	<tr>
+		<td><input type="submit" value="확인" style="height: 30px; width:60px; background-color: green; font-size='5'">
+		<td></td>
+</form>
+		<td align="right" ><button onclick="goBack()" style="height: 30px; width:60px;">돌아가기</button></td>
+	</tr>
+</table>
+
+
+
+
+
+<script>
+function goBack()
+{
+	window.history.back();
+}
+
+function check()
+{
+	var f = document.registForm;
+
+    // 7.입력폼 검사
+    if(f.id.value == ""){
+        // 8.값이 없으면 경고창으로 메세지 출력 후 함수 종료
+        alert("아이디를 입력해 주세요.");
+        return false;
+    }
+
+    if(f.name.value == ""){
+        alert("이름을 입력해 주세요.");
+        return false;
+    }
+
+    if(f.password.value == ""){
+        alert("비밀번호를 입력해 주세요.");
+        return false;
+    }
+
+    
+
+    // 10.검사가 성공이면 form 을 submit 한다
+    f.submit();
+
+}
+
+</script>
+</body>
+</html>

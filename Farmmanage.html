@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <title>농장 관리 페이지</title>
+</head>
+<body>
+    
+    <?
+            
+            $fnum = $_GET['farmnum'];
+
+            $conn = mysql_connect('localhost', 'root', 'apmsetup');
+            mysql_query("set names utf8");
+            if(!$conn)
+            {
+                echo "Fail";
+            }
+            $db_name="webfarm";
+            mysql_select_db($db_name, $conn);
+            $que1=mysql_query("SELECT Fname FROM farm WHERE FNum=$fnum");
+            $que2=mysql_query("SELECT Name FROM farm, user WHERE FNum=$fnum and farm.userID=user.userID");
+            $que3=mysql_query("SELECT PPhoto, PNum, PCount, PName, Price FROM product where fnum = $fnum");
+            $que4=mysql_query("SELECT UPhoto FROM user, farm WHERE FNum=$fnum AND user.userid=farm.userid");
+
+        
+
+          
+            
+            $farmname = mysql_result($que1, 0);
+            $username = mysql_result($que2, 0);
+            $userphoto = './photo/'.mysql_result($que4, 0);
+            ?>
+            <div align="center">
+            <?
+ 
+
+                echo $farmname, "<br/>";
+                echo "User name : " ,$username, "<br/>", "<br/>";
+            ?>
+            </div>
+            <div>
+            <img src=<?=$userphoto?> width = "500" heigth = "500"><br/><br/>
+            </div>
+            <?
+            $arr=array();
+            $i=0;
+    
+            while($data_row = mysql_fetch_array($que3))
+            {
+                 $arr[i] = $data_row['PNum'];
+            ?>
+               
+    <div style="float:left"><a href=deleteproduct.php?pnum=<?=$arr[i]?>><img src=<?='./photo/'.$data_row['PPhoto']?> width = 100 height=100></a><br/>
+            <?
+                
+             //   echo "Product Number : ", $data_row['PNum'], "<br/>";
+                echo "Product Name : ", $data_row['PName'], "<br/>"; 
+                echo "Product Count : ", $data_row['PCount'], "<br/>";
+                 echo "Product Price : ", $data_row['Price'], "<br/>";
+              //  echo "Product Descption : ", $data_row['Descption'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>", "<br/>";
+            ?></div><?
+            
+            }
+        ?>
+    <br/><br/>
+    <a href="register.php?farmnum=<?=$fnum?>"><img src="./photo/plus.jpg"></a>
+    
+
+</body>
+</html>

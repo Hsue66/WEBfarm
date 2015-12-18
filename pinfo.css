@@ -1,0 +1,41 @@
+.header
+{
+	margin-top: 50px;
+	text-align: center;
+	padding : 5px;
+}
+
+#image
+{
+width: 400px;
+}
+
+img
+{
+width:300px;
+height:300px;
+}
+.container
+{
+	overflow: hidden;
+}
+#img
+{
+	width:600px;
+	max-width: 50%;
+	height: 300px;
+
+	float: left;
+}
+#info
+{
+	width:600px;
+	max-width: 50%;
+	height: 300px;
+	text-align: center;	
+	float: right;
+}
+#text
+{
+	text-align: center;
+}

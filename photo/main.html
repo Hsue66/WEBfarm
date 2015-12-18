@@ -1,0 +1,69 @@
+<?
+ include "lib.php";
+?>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Web Farm</title>
+<input type="button"  onclick="location.href='http://localhost//web//login.html'";	style="height: 40px; width:80px; background-color: green; float: right" value="로그인">
+<input type="button"  onclick="location.href='http://localhost//web//logout.php'";	style="height: 40px; width:80px; background-color: green; float: right" value="로그아웃">
+
+    </head>
+    <body>
+        <center><a href="main.html"><img src="./photo/logo.png" width="250", height="80"></a></center>
+        
+        <?
+            
+        
+            $conn = mysql_connect('localhost', 'root', 'apmsetup');
+				mysql_query("set names utf8");
+
+            if(!$conn)
+            {
+                echo "Fail";
+            }
+            $db_name="webfarm";
+            mysql_select_db($db_name, $conn);
+            $que1=mysql_query("SELECT USERID FROM farm WHERE FNUM=1");
+            $que2=mysql_query("SELECT UserId FROM farm WHERE FNum=2");
+            $que3=mysql_query("SELECT UserId FROM farm WHERE FNum=3");
+            $que4=mysql_query("SELECT UserId FROM farm WHERE FNum=4");
+            $que5=mysql_query("SELECT UserId FROM farm WHERE FNum=5");
+            $que6=mysql_query("SELECT UserId FROM farm WHERE FNum=6");
+
+            $farm1user = mysql_result($que1, 0);
+            $farm2user = mysql_result($que2, 0);
+            $farm3user = mysql_result($que3, 0);
+            $farm4user = mysql_result($que4, 0);
+            $farm5user = mysql_result($que5, 0);
+            $farm6user = mysql_result($que6, 0);
+          
+
+            $now=$_SESSION['id'];
+            echo $now;
+            echo $farm1user;
+        ?>
+        
+        
+        
+        <center><table>
+            <tr>
+                <th width="250" height="100"><?if($farm1user==NULL){?><a href="farmReserve.php?farmnum=1"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm1user==$now){?><a href="farmmanage.html?farmnum=1" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=1" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+                <th width="250" height="100"><?if($farm2user==NULL){?><a href="farmReserve.php?farmnum=2"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm2user==$now){?><a href="farmmanage.html?farmnum=2" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=2" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+                <th width="250" height="100"><?if($farm3user==NULL){?><a href="farmReserve.php?farmnum=3"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm3user==$now){?><a href="farmmanage.html?farmnum=3" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=3" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+            </tr>
+            <tr>
+                <th width="250" height="100"><?if($farm4user==NULL){?><a href="farmReserve.php?farmnum=4"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm4user==$now){?><a href="farmmanage.html?farmnum=4" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=4" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+                <th width="250" height="100"><?if($farm5user==NULL){?><a href="farmReserve.php?farmnum=5"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm5user==$now){?><a href="farmmanage.html?farmnum=5" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=5" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+               <th width="250" height="100"><?if($farm6user==NULL){?><a href="farmReserve.php?farmnum=6"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm6user==$now){?><a href="farmmanage.html?farmnum=6" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=6" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+            </tr>
+        </table></center>
+		
+		        
+        
+        
+    </body>
+    
+    
+</html>

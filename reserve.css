@@ -1,0 +1,36 @@
+#header
+{
+	margin-top: 50px;
+	text-align: center;
+	padding : 5px;
+}
+#container
+{
+	overflow: hidden;
+}
+#img
+{
+	width:600px;
+	max-width: 50%;
+	height: 400px;
+	
+	float: left;
+	
+}
+img
+{
+width:400px;
+height:400px;
+}
+#datepicker
+{
+	float:right;
+	max-width: 50%;
+	padding-right: 10%;
+}
+#cost
+{
+	padding-left: 200px;
+	padding-right: 200px;
+	
+}
