@@ -5,7 +5,7 @@ include "lib.php";
 
 if(!isset($_SESSION["id"])){
    echo "<script> alert('로그인 하셔야 이용 가능합니다.');</script>";
-   echo "<script language='javascript'>location.replace('test.html');";
+   echo "<script language='javascript'>location.replace('login.html');";
    echo "</script>";
 }
 

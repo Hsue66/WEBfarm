@@ -7,7 +7,7 @@ unset($_SESSION['name']);
 
 
      echo "<script> alert('로그아웃 되었습니다...');</script>";
-     echo "<script language='javascript'>history.back();";
+     echo "<script language='javascript'>location.replace('main.html');";
 	 echo "</script>";
 
 ?>
