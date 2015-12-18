@@ -112,7 +112,7 @@
 			
 			function gocart(){//이 함수를 호출하면
 				alert("장바구니에 등록되었습니다!");			
-			}
+			}	
 		//"location.href='/web/pay.php?pnum=<?=$p_num?>&buycount=<?=$count?>'"
 		</script>
 
