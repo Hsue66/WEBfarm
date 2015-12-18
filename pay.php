@@ -13,7 +13,11 @@ $result = mysql_connect('localhost', 'root', 'apmsetup') or die(mysql_error());
 mysql_query("set names utf8");
 mysql_select_db('webfarm') or die(mysql_error());
 
-$chk_sql = "select * from cart where USERID = '".trim($_SESSION["id"])."'";
+
+$p_num = $_GET['pnum'];
+$buy_count = $_GET['buycount'];
+$f_num = $_GET['fnum'];
+$chk_sql = "select * from product where PNUM = '".trim($p_num)."'";
 $chk_result = mysql_query($chk_sql);
 
 ?>
@@ -52,7 +56,6 @@ a:hover    {color:green;text-decoration:none}
 <body>
 <br/>
 <br/>
-<form name=registForm action="registry.php" method="post">
 <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
 	<tr>
 		<td width="200">제품</td>
@@ -66,14 +69,12 @@ a:hover    {color:green;text-decoration:none}
 $price=0;
 while($row = mysql_fetch_array($chk_result))
 {
-	echo "<tr><td>".$row['PNUM']."</td>
+	echo "<tr><td><img src='./photo/".$row['PPHOTO']."' width = '100' heigth = '100'></td>
 	<td>".$row['FNUM']."</td>
-	<td>".$row['PCOUNT']."</td>
-	<td>".$row['PRICE']."</td></tr>";
-	$name = $row['USERID'];
-	$phone = $row['PHONE'];
-	$addr = $row['ADDR'];
-	$price=$price+$row['PRICE'];
+	<td>".$buy_count."</td>
+	<td>".$row['PRICE']*$buy_count."</td></tr>";
+	
+	$price=$row['PRICE']*$buy_count;
 }
 
 
@@ -83,36 +84,42 @@ while($row = mysql_fetch_array($chk_result))
 <br/>
 <br/>
 <br/>
+<form name="baesong" action="paystore.php" method="post">
+
 <table  align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="black">
 <tr>
 	<td width="200">이름</td>
-	<td width="600"><?=$name?></td>
+	<td width="600"><input type=text name="username" style="width: 600px;"></td>
 </tr>
 <tr>
 	<td width="200">휴대폰 번호</td>
-	<td width="600"><?=$phone?></td>
+	<td width="600"><input type=text name="userphone" style="width: 600px;"></td>
 </tr>
 <tr>
 	<td width="200">배송 주소</td>
-	<td width="600"><?=$addr?></td>
+	<td width="600"><input type=text name="useraddress" style="width: 600px;"></td>
 </tr>
-
 </table>
-<br/><br/>
+		<input type=hidden name="p_num" value="<?=$p_num?>"> 
+		<input type=hidden name="f_num" value="<?=$f_num?>"> 
+		<input type=hidden name="buy_count" value="<?=$buy_count?>">
+		<input type=hidden name="price" value="<?=$price?>"> 
+
 <div style="float: right;">
 총 상품금액 : <?=$price?>원 
 
-		<input type="submit" value="결제하기" style="height: 30px; width:80px; background-color: green; font-size='5'">
-
-		<td align="right" ><button onclick="goBack()" style="height: 30px; width:80px;">취소하기</button></td>
+	<input type="submit" value="결제하기" style="height: 30px; width:80px; background-color: green; font-size='5'">
+</form>
+<td align="right" ><button onclick="goBack()" style="height: 30px; width:80px;">취소하기</button></td>
 </div>
+
+<br/><br/>
 
 <script>
 function goBack()
 {
 	window.history.back();
 }
-
 
 </script>
 </body>
