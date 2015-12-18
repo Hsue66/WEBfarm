@@ -75,94 +75,53 @@
 					<img src = <?= $FPHOTO ?>>
 				</div>
 
-				<!--datepicker
-				<div id = "date">
-					<script>
-					$(document).ready(function () {
-						$.datepicker.regional['ko'] = {
+		 <script>
 
-							prevText: '이전달',
-							nextText: '다음달',
+         var flag = 0;
+         var duration, edateObj, sdateObj;
+         var sdate;
+           $(function() {
+            
+             $( "#datepicker" ).datepicker({
+                changeMonth: true,
+                onSelect: function(selectedDate){
+                   if(flag == 0){
+                      flag = 1;
+                      $("#datepicker").datepicker("option","maxDate",null);
+                      $("#datepicker").datepicker("option","minDate",null);
+                      $("#datepicker").datepicker("option","minDate",selectedDate);
+                       $("#start").text($("#datepicker").val());
+                      sdate = $("#datepicker").val().split("/");
+                      sdateObj = new Date(sdate[2], Number(sdate[0])-1, sdate[1]);
+                   }
+                   else{
+                      $("#datepicker").datepicker("option","maxDate",selectedDate);
+                      flag = 0;
+                      $("#finish").text($("#datepicker").val());
+                      var edate = $("#datepicker").val().split("/");
+                      edateObj = new Date(edate[2], Number(edate[0])-1, edate[1]); 
 
-							monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
-							'7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
-							monthNamesShort: ['1월','2월','3월','4월','5월','6월',
-							'7월','8월','9월','10월','11월','12월'],
-							dayNames: ['일','월','화','수','목','금','토'],
-							dayNamesShort: ['일','월','화','수','목','금','토'],
-							dayNamesMin: ['일','월','화','수','목','금','토'],
+                      var duration = (edateObj.getTime() - sdateObj.getTime()) / 1000 / 60 / 60 / 24;
+                      $("#duration").text(duration);
+                      var cost = <?=$PRICE?>/6;
+                      
+                      var due = Math.ceil(duration/30);
 
-							dateFormat: 'yy-mm-dd',
+                      cost = cost*due;
+                      $("#costcount").text(cost);
+                   }
+                   
+                }
+             });
 
-							showMonthAfterYear: true,
-							yearSuffix: '',
-							showOn: 'both',
-							buttonText: "달력",
-							changeMonth: true,
-							changeYear: true,
-							yearRange: 'c-99:c+99',
-						};
-						$.datepicker.setDefaults($.datepicker.regional['ko']);
-
-						$('#sdate').datepicker();
-						$('#sdate').datepicker("option", "maxDate", $("#edate").val());
-						$('#sdate').datepicker("option", "onClose", function ( selectedDate ) {
-							$("#edate").datepicker( "option", "minDate", selectedDate );
-						});
-
-						$('#edate').datepicker();
-						$('#edate').datepicker("option", "minDate", $("#sdate").val());
-						$('#edate').datepicker("option", "onClose", function ( selectedDate ) {
-							$("#sdate").datepicker( "option", "maxDate", selectedDate );
-
-						});
-					});
-					</script>
-				시작날짜 : <input type="text" id="sdate"> 
-				</br>
-				 종료날짜 : <input type="text" id="edate">
-
-			</div>
-
-		</br>
--->
-
-
-		  <script>
-
-		   var flag = 0;
-			  $(function() {
-			   
-			    $( "#datepicker" ).datepicker({
-			       changeMonth: true,
-			       onSelect: function(selectedDate){
-			          if(flag == 0){
-			             flag = 1;
-			             $("#datepicker").datepicker("option","maxDate",null);
-			             $("#datepicker").datepicker("option","minDate",null);
-			             $("#datepicker").datepicker("option","minDate",selectedDate);
-			          $("#start").text($("#datepicker").val());
-			         var sdate = $("#datepicker").val();
-			          }
-			          else{
-			             $("#datepicker").datepicker("option","maxDate",selectedDate);
-			             flag = 0;
-			             $("#finish").text($("#datepicker").val());
-			             var edate = $("#datepicker").val();
-			          }
-			          
-			       }
-			    });
-
-			  });
-
-		  </script>
+           });
+        </script>
 		  
 		<div id="datepicker">
 		</br>
 			<strong id="start">시작날짜</strong>~
 			<strong id="finish">종료날짜</strong>
-			<button id="refresh" class="btn btn-default" onclick="location.href='http://localhost/nse/farmReserve.php'">refresh</button>
+			<button id="refresh" class="btn btn-default" onclick="location.href='http://localhost/web/farmReserve.php?farmnum=<?=$f_num?>'">refresh</button>
 		</br>
 		</br>
 		</div>
@@ -181,9 +140,9 @@
 		
 		//$cost = $duration*10000;
 		?>
-		이용달수 : <strong id="duration">0</strong>원
+		이용달수 : <strong id="duration">0</strong>일
 	</br>	
-		총 예약금액 :<h4> <? echo $cost ?>원</h4>
+		총 예약금액 :<h4> <strog id="costcount">0</strong> 원</h4>
 	</br>
 
 		<center>
