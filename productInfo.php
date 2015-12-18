@@ -1,3 +1,4 @@
+<? include "lib.php" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -111,17 +112,18 @@
 				location.href="/web/pay.php?pnum=<?=$p_num?>&buycount="+count;
 			}
 			
-			/*
+
+			
 			function gocart(){//이 함수를 호출하면
-				alert("장바구니에 등록되었습니다!");	
-				alert("<?echo query();?>");
+				alert("장바구니에 등록되었습니다!<?echo query();?>");	
 			}	
 
 			<?
 				function query(){
-
-					$sql = "insert into CART (USERID, PNUM, PCOUNT) values ('".trim($_SESSION["id"])."', '".$p_num."', '3')";
-					mysql_query($sql);
+					$pnum = $_GET['pnum'];
+					$id = $_SESSION["id"];
+					$save = "insert into CART (USERID, PNUM, PCOUNT) values ('".$id."', '".$pnum."', 23)";
+					mysql_query($save);
 				} 
 			?>
 		//"location.href='/web/pay.php?pnum=<?=$p_num?>&buycount=<?=$count?>'"
