@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <meta charset="utf-8">
     <title>개인 농장 페이지</title>
@@ -27,7 +27,9 @@
             
             $que5=mysql_query("SELECT SDATE FROM farm WHERE FNum=$fnum");
             $que6=mysql_query("SELECT FDATE FROM farm WHERE FNum=$fnum");
-
+            $que7=mysql_query("SELECT MENTION FROM farm WHERE FNum=$fnum");
+        
+            $mention = mysql_result($que7, 0);
             $sdate = mysql_result($que5, 0);
             $fdate = mysql_result($que6, 0);
 
@@ -44,9 +46,12 @@
             ?>
             </div>
             <div>
-                <img width = "100" heigth = "100" src=<?=$userphoto?>><br/><br/>    
+                  
+                <img width = "100" heigth = "100" src=<?=$userphoto?>><br/><br/> 
+                 농장 주인의 한마디!&nbsp;&nbsp;  "<? echo $mention; ?>"<br/>
                 <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
                 <input type=button onclick="location.href='http://localhost/web/farmReserve.php?farmnum=<?=$fnum?>'"; value="예약 하기">
+             
             </div>
             <?
             $arr=array();
