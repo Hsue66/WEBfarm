@@ -100,6 +100,7 @@
 				총 결제금액 : <strong id="totalPrice">0</strong>원
 				<?
 				//echo $var;
+				$count =0;
 				?>
 
 			</br>
@@ -110,9 +111,19 @@
 				location.href="/web/pay.php?pnum=<?=$p_num?>&buycount="+count;
 			}
 			
+			/*
 			function gocart(){//이 함수를 호출하면
-				alert("장바구니에 등록되었습니다!");			
+				alert("장바구니에 등록되었습니다!");	
+				alert("<?echo query();?>");
 			}	
+
+			<?
+				function query(){
+
+					$sql = "insert into CART (USERID, PNUM, PCOUNT) values ('".trim($_SESSION["id"])."', '".$p_num."', '3')";
+					mysql_query($sql);
+				} 
+			?>
 		//"location.href='/web/pay.php?pnum=<?=$p_num?>&buycount=<?=$count?>'"
 		</script>
 

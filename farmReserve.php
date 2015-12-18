@@ -188,7 +188,7 @@
 		<center>
 		<div class = "btn-group">
 		<button id = "reserve" class="btn btn-success">예약하기</button>
-      	<button id = "back" class="btn btn-default">돌아가기</button>			
+      	<button id = "back" class="btn btn-default" onclick="history.back()">돌아가기</button>			
 		</div>
 		</center>
 

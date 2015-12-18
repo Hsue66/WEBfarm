@@ -1,21 +1,15 @@
 <?
-
 include "lib.php";
-
-$conn = mysql_connect('localhost', 'root', 'apmsetup');
-$db_name="webfarm";
-mysql_query("set names utf8");
-mysql_select_db($db_name, $conn);
-
 if(!isset($_SESSION["id"])){
    echo "<script> alert('로그인 하셔야 이용 가능합니다.');</script>";
-   echo "<script language='javascript'>location.replace('test.html');";
+   echo "<script language='javascript'>location.replace('login.html');";
    echo "</script>";
 }
-
+$result = mysql_connect('localhost', 'root', 'apmsetup') or die(mysql_error());
+mysql_query("set names utf8");
+mysql_select_db('webfarm') or die(mysql_error());
 $chk_sql = "select * from cart where USERID = '".trim($_SESSION["id"])."'";
 $chk_result = mysql_query($chk_sql);
-
 ?>
 
 <html>
@@ -26,8 +20,6 @@ a:link     {color:green;text-decoration:none}
 a:visited  {color:green;text-decoration:none} 
 a:active   {color:green;text-decoration:none} 
 a:hover    {color:green;text-decoration:none} 
-
-
 </style>
 
 
@@ -75,8 +67,6 @@ while($row = mysql_fetch_array($chk_result))
 	$addr = $row['ADDR'];
 	$price=$price+$row['PRICE'];
 }
-
-
 ?>
 </table>
 
@@ -112,8 +102,6 @@ function goBack()
 {
 	window.history.back();
 }
-
-
 </script>
 </body>
 </html>
