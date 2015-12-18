@@ -1,11 +1,24 @@
 <?
-// 1. 공통 인클루드 파일
 include "lib.php";
 
-$conn = mysql_connect('localhost', 'root', 'apmsetup');
-$db_name="webfarm";
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+</body>
+</html>
+
+<?
+// 1. 공통 인클루드 파일
+
+
+$result = mysql_connect('localhost', 'root', 'apmsetup') or die(mysql_error());
 mysql_query("set names utf8");
-mysql_select_db($db_name, $conn);
+mysql_select_db('webfarm') or die(mysql_error());
+
+
 // 2. 로그인한 회원은 뒤로 보내기
 if($_SESSION[id]){
         echo "<script> alert('로그인 하신 상태입니다..');</script>";
@@ -14,19 +27,19 @@ if($_SESSION[id]){
 }
 
 // 3. 넘어온 변수 검사
-if(trim($_POST[id]) == ""){
+else if(trim($_POST[id]) == ""){
         echo "<script> alert('id를 입력하시지 않았습니다.');</script>";
 		echo "<script language='javascript'>history.back();";
 		echo "</script>";
 }
 
-if(trim($_POST[name]) == ""){
+else if(trim($_POST[name]) == ""){
         echo "<script> alert('이름을 입력하세요.');</script>";
 		echo "<script language='javascript'>history.back();";
 		echo "</script>";
 }
 
-if($_POST[password] == ""){
+else if($_POST[password] == ""){
         echo "<script> alert('비밀번호를 입력하시지 않았습니다..');</script>";
 		echo "<script language='javascript'>history.back();";
 		echo "</script>";
@@ -44,7 +57,15 @@ if($chk_data[USERID]){
 	alert("이미 가입된 아이디 입니다.");
 }
 
-$sql = "insert into USER (USERID, USERPW, NAME, UPHOTO) values ('".trim($_POST[id])."', '".trim($_POST[password])."', '".$_POST[name]."', ' ')";
+$user_id = htmlspecialchars($_POST[id]);
+$user_pass = htmlspecialchars($_POST[password]);
+$user_name = htmlspecialchars($_POST[name]);
+
+$user_name = mysql_real_escape_string($user_name);
+$user_id=mysql_real_escape_string($user_id);
+$user_pass=mysql_real_escape_string($user_pass);
+
+$sql = "insert into USER (USERID, USERPW, NAME, UPHOTO) values ('".trim($user_id)."', '".trim($user_pass)."', '".trim($user_name)."', ' ')";
 mysql_query($sql);
 
 alert("회원가입이 완료 되었습니다.","http://localhost//web//main.html");
