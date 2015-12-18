@@ -16,6 +16,7 @@
     $userpic=$_POST['userpic'];
     $farmpic=$_POST['farmpic'];
 
+    echo $fnum, "    ", $men;
 
         $que1=mysql_query("UPDATE farm set MENTION='$men' where fnum='$fnum'");
  
@@ -25,5 +26,5 @@
         $que3=mysql_query("UPDATE user INNER JOIN farm ON (user.userID=farm.userID) set UPHOTO='$userpic' WHERE fnum=$fnum");
    
 
-    echo "<script>location.href='Farmmanage.html?farmnum=$fnum';</script>"; 
+    //echo "<script>location.href='Farmmanage.html?farmnum=$fnum';</script>"; 
 ?>

@@ -13,30 +13,8 @@
             
             $productname = mysql_result($que1, 0);
             $farmnum = mysql_result($que2, 0);
+            $del=mysql_query("DELETE FROM product WHERE PNum=$pnum");
+            echo "<script>location.href='Farmmanage.html?farmnum=$farmnum';</script>"; 
+
+           
 ?>
-<html>
-    <head><meta charset="utf-8">
-    </head>
-    <body>
-        <?=$productname?> 을(를) 정말 지우시겠습니까?
-        <br/>
-        <script type="text/javascript">
-            function del()
-            {
-                <?
-                $del=mysql_query("DELETE FROM product WHERE PNum=$pnum");
-                ?>
-                location.href="farmmanage.html?farmnum=<?=$farmnum?>";
-            }
-            function cel()
-            {
-                location.href="farmmanage.html?farmnum=<?=$farmnum?>";
-            }
-        </script>
-        <input type="submit" value="삭제" onclick="del()">
-        <input type="submit" value="되돌아가기" onclick="cel()">
-        
-        
-        
-    </body>
-</html>
