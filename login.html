@@ -1,12 +1,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
+
 <style>
 a:link     {color:green;text-decoration:none} 
 a:visited  {color:green;text-decoration:none} 
 a:active   {color:green;text-decoration:none} 
 a:hover    {color:green;text-decoration:none} 
 </style>
+
 <div align="left" >
 	<font  SIZE="6" color="green" face="궁서체">
 	   <a href="http://localhost/web/test.html">WEB FARM</a>
@@ -23,21 +28,27 @@ a:hover    {color:green;text-decoration:none}
 	
 </head>
 <body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
 <br/>
 <br/>
 <form action="login.php" method="post">
-<table align="center">
+<table align="center" >
 	<tr>
-		<td>ID</td>
+		<td class="success">ID</td>
 		<td></td>
-		<td><input type=text name=id></td>
+		<td class="success"><input type=text name=id></td>
 	</tr>
 		<td>PASSWORD</td>
 		<td></td>
 		<td><input type=password name=password></td>
 	<tr><td>&nbsp</td></tr>
 	<tr>
-		<td><input type="submit" value="Login" style="height: 30px; width:60px; background-color: green; font-size='5'">
+		<td><input type="submit" value="Login" class="btn btn-success" style="height: 30px; width:60px; background-color: green; font-size='5'">
 		<td></td>
 </form>
 		<td align="right" ><button onclick="goBack()" style="height: 30px; width:60px;">Cancel</button></td>
@@ -45,7 +56,8 @@ a:hover    {color:green;text-decoration:none}
 	<tr>
 	<td></td>
 	<td align="center"> 
-<input type="button" onclick="location.href='http://localhost//web//registry.html'";	style="height: 40px; width:80px; background-color: green" value="회원가입">
+<input type="button" class="btn btn-success" onclick="location.href='http://localhost//web//registry.html'";	style="height: 40px; width:80px; background-color: green" value="회원가입">
+
 	</td>
 	</tr>
 </table>
