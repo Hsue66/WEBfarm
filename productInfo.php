@@ -107,15 +107,18 @@
 		<script>
 			function send(){//이 함수를 호출하면
 				var count = $("#spinner").val();
-				location.href="/web/pay.php?pnum=\"<?=$p_num?>\"&buycount="+count;
+				location.href="/web/pay.php?pnum=<?=$p_num?>&buycount="+count;
 			}
-
+			
+			function gocart(){//이 함수를 호출하면
+				alert("장바구니에 등록되었습니다!");			
+			}
 		//"location.href='/web/pay.php?pnum=<?=$p_num?>&buycount=<?=$count?>'"
 		</script>
 
 		<div class = "btn-group">
 		<button id = "buy" class="btn btn-success" onclick="send()">바로구매</button>
-      	<button id = "cart" class="btn btn-default">장바구니담기</button>			
+      	<button id = "cart" class="btn btn-default" onclick="gocart()">장바구니담기</button>			
 		</div>
 
 			
