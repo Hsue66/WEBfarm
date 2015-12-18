@@ -28,11 +28,12 @@ $buy_count =$_POST[buy_count];
 $price =$_POST[price];
 $id=$_SESSION[id];
 
+echo $id;
 //echo $f_num." ".$p_num." ".$buy_count." ".$price." ".$id;
 //echo  $user_name, $name,$_POST["username"];
 
-$sql = "INSERT INTO ORDER (FNUM, USERID, PNUM, PCOUNT, PRICE, ADDR, PHONE, CUSTOMER) VALUES ($f_num,$id,$p_num,$buy_count,$price,$user_address,$user_phone,$user_name)";
-mysql_query($sql) or die(mysql_error());
+$sql = "insert into orders values ('$f_num','$id','$p_num','$buy_count','$price','$user_address','$user_phone','$user_name' ) ";
+$chk_result=mysql_query($sql) or die(mysql_error());
 
     echo "<script> alert('결제 완료 되었습니다.');";
     echo "location.href='./farm.html?farmnum=$f_num'; </script>";

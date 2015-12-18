@@ -1,3 +1,4 @@
+<? include "lib.php" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -188,7 +189,7 @@
 		<center>
 		<div class = "btn-group">
 		<button id = "reserve" class="btn btn-success">예약하기</button>
-      	<button id = "back" class="btn btn-default">돌아가기</button>			
+      	<button id = "back" class="btn btn-default" onclick="history.back()">돌아가기</button>			
 		</div>
 		</center>
 

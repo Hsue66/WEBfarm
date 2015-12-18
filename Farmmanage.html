@@ -24,10 +24,14 @@
             $que3=mysql_query("SELECT PPhoto, PNum, PCount, PName, Price FROM product where fnum = $fnum");
             $que4=mysql_query("SELECT UPhoto FROM user, farm WHERE FNum=$fnum AND user.userid=farm.userid");
 
-        
-
+              $que5=mysql_query("SELECT SDATE FROM farm WHERE FNum=$fnum");
+            $que6=mysql_query("SELECT FDATE FROM farm WHERE FNum=$fnum");
+            $que7=mysql_query("SELECT MENTION FROM farm WHERE FNum=$fnum");
           
-            
+
+            $sdate = mysql_result($que5, 0);
+            $fdate = mysql_result($que6, 0);
+            $mention = mysql_result($que7, 0);
             $farmname = mysql_result($que1, 0);
             $username = mysql_result($que2, 0);
             $userphoto = './photo/'.mysql_result($que4, 0);
@@ -42,6 +46,8 @@
             </div>
             <div>
             <img src=<?=$userphoto?> width = "500" heigth = "500"><br/><br/>
+              농장 주인의 한마디!&nbsp;&nbsp;  "<? echo $mention; ?>"<br/>
+            <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
             </div>
             <?
             $arr=array();
