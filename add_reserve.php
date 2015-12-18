@@ -20,9 +20,10 @@ header("Content-Type: text/html; charset= UTF-8 ");
    $start = $_GET['start'];
    $finish = $_GET['finish'];
    $save = "insert into RESERVE (FNUM, USERID, SDATE, FDATE) values ('".$fnum."', '".$id."', '".$start."', '".$finish."')";
+   $link = "http://localhost/web/mypage.php?id=".$id;
    mysql_query($save);
 
-   echo '<script>alert("예약되었습니다!");history.back();</script>';
+   echo "<script> alert(\"예약되었습니다!\");location.href=\"$link\";</script>";
    }
 
 ?> 

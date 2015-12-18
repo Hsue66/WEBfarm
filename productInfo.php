@@ -66,6 +66,7 @@
 	?>
 	<div class="container">
 		<div id ="img" >
+				
 			<img id="image" src = <?= $PPHOTO?> class="img-rounded">
 		</div>
 		
