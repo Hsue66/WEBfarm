@@ -115,19 +115,14 @@
 
 			
 			function gocart(){//이 함수를 호출하면
-				alert("장바구니에 등록되었습니다!<?echo query();?>");	
-			}	
-
-			<?
-				function query(){
-					$pnum = $_GET['pnum'];
-					$id = $_SESSION["id"];
-					$save = "insert into CART (USERID, PNUM, PCOUNT) values ('".$id."', '".$pnum."', 23)";
-					mysql_query($save);
-				} 
-			?>
-		//"location.href='/web/pay.php?pnum=<?=$p_num?>&buycount=<?=$count?>'"
-		</script>
+            var count = $("#spinner").val();
+            <?
+               $pnum = $_GET['pnum'];
+               $id = $_SESSION['id'];
+            ?>
+            location.href="/web/add_cart.php?pnum=<?=$pnum?>&id=<?=$id?>&count="+count;
+         }   
+        </script>
 
 		<div class = "btn-group">
 		<button id = "buy" class="btn btn-success" onclick="send()">바로구매</button>
