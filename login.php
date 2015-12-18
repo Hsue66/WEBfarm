@@ -30,7 +30,7 @@ if($chk_data[USERID]){
         $_SESSION["name"] = $chk_data[NAME];
         
 		echo "<script> alert('환영 합니다..');</script>";
-		echo "<script language='javascript'>location.replace('pay.php');";
+		echo "<script language='javascript'>location.replace('main.html');";
 		echo "</script>";
         
     }else{

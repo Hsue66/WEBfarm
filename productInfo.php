@@ -109,7 +109,7 @@
 		<script>
 			function send(){//이 함수를 호출하면
 				var count = $("#spinner").val();
-				location.href="/web/pay.php?pnum=<?=$p_num?>&buycount="+count;
+				location.href="/web/pay.php?fnum=<?=$f_num?>&pnum=<?=$p_num?>&buycount="+count;
 			}
 			
 

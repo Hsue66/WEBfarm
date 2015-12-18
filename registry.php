@@ -60,12 +60,20 @@ if($chk_data[USERID]){
 $user_id = htmlspecialchars($_POST[id]);
 $user_pass = htmlspecialchars($_POST[password]);
 $user_name = htmlspecialchars($_POST[name]);
+$f_num =$_POST[f_num];
+$p_num =$_POST[p_num];
+$buy_count =$_POST[buy_count];
+$price =$_POST[$price];
+
 
 $user_name = mysql_real_escape_string($user_name);
 $user_id=mysql_real_escape_string($user_id);
 $user_pass=mysql_real_escape_string($user_pass);
 
-$sql = "insert into USER (USERID, USERPW, NAME, UPHOTO) values ('".trim($user_id)."', '".trim($user_pass)."', '".trim($user_name)."', ' ')";
+
+
+
+$sql = "insert into USER (USERID,USERPW,NAME,UPHOTO) values ('".trim($user_id)."', '".trim($user_pass)."', '".trim($user_name)."', ' ')";
 mysql_query($sql);
 
 alert("회원가입이 완료 되었습니다.","http://localhost//web//main.html");
