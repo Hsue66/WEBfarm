@@ -4,6 +4,13 @@ header("Content-Type: text/html; charset= UTF-8 ");
  include "./connect_db.php"; // 데이터 베이스 접속 프로그램 불러오기
 
 
+ if(!preg_match('/[0-9]+/',$_POST['p_count'])||!preg_match('/[0-9]+/',$_POST['p_cost']))
+ {
+	 echo "<script> alert('숫자만 입력하셔야 합니다.'); history.back();</script>";
+ }
+ 
+ else{
+ 
 //현재 업로드 상태인지를 체크
  if($_POST['mode'] == 'upload') {
 
@@ -120,5 +127,5 @@ header("Content-Type: text/html; charset= UTF-8 ");
 	}//if
 
 
-
+ }
 ?> 
