@@ -32,6 +32,7 @@ padding-right: 30px;
 	   </head>
 
     <body background="./photo/back.jpg">
+        
         <div id='body1'>
 
         <center><a href="main.html"><img src="./photo/logo.png" , height="150"></a></center>
@@ -91,9 +92,9 @@ padding-right: 30px;
 		PW <input type=password name=password  class="form-control"><br/>
         <div class = "btn-group">
        
-		<input type="button" class="btn btn-default" value="회원가입" onclick="location.href='./registry.html'" style="background-color: green; ">
+		<input type="button" class="btn btn-default" value="회원가입" onclick="location.href='./registry.html'" >
 
-        <input type=submit class="btn btn-success" value ="로그인" style="background-color: green;">
+        <input type=submit class="btn btn-success" value ="로그인" >
         </div>
 		</form>
 		</div>
@@ -133,10 +134,9 @@ padding-right: 30px;
                <th width="250" height="300"><?if($farm6user==NULL){?><a href="farmReserve.php?farmnum=6"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm6user==$now){?><a href="farmmanage.html?farmnum=6" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=6" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
             </tr>
         </table></center>
-		
-		
+
         </div>
-        
+
         
     </body>
     

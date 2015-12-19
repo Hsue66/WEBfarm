@@ -1,6 +1,13 @@
+<? include "lib.php" ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="registry.css"/>
 <style>
 a:link     {color:green;text-decoration:none} 
 a:visited  {color:green;text-decoration:none} 
@@ -49,61 +56,88 @@ a:hover    {color:green;text-decoration:none}
 
 
 
-<div>
-	<font  SIZE="6" color="green" face="궁서체">
-	   <a href="http://localhost/web/main.html" align="left">WEB FARM</a>
-	</font>
 
-<input type="button"  onclick="location.href='http://localhost//web//login.html'";	style="height: 40px; width:80px; background-color: green; float: right" value="로그인">
-<div>
-	<br/>
-	<br/>
-	<div align="center">
+	
+</head>
+<body background="./photo/back.jpg">
+    <div id="body1">
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost/web/main.html">Web farm</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li><a href="http://localhost/web/login.html">로그인</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            if(isset($_SESSION["id"])){
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src="./photo/user.jpg"  style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
+          </ul>
+        </div>
+</div>	
+<br/>
+<br/>
+
+	<div id="header" align="center">
 	<font SIZE="9" color="black" face="돋움">
 	회원 가입
 	</font>
 	</div>
 	<HR size="3" color="black" WIDTH="100%">
-	
-</head>
-<body>
-<br/>
-<br/>
-<form name=registForm action="registry.php" method="post">
+
+<form  enctype="multipart/form-data" name=registForm action="registry.php" method="post">
 <table align="center">
 	<tr>
 		<td>ID</td>
 		<td></td>
-		<td><input type=text name=id></td>
+		<td><input type=text class="form-control" name=id></td>
 	</tr>
 		<td>PASSWORD</td>
 		<td></td>
-		<td><input type=password name=password></td>
+		<td><input type=password class="form-control" name=password></td>
 	<tr>
 		<td>이름</td>
 		<td></td>
-		<td><input type=text name=name></td>
+		<td><input type=text class="form-control" name=name></td>
 	</tr>
 		<td>사진</td>
 		<td></td>
 	<td>
-		<input type="text"  name=fileName id="fileName" class="file_input_textbox" readonly="readonly">
+
+		<input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" name="upload"/>
+		<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+		<input type="hidden" name="mode" value="upload" />
+		<!--
+		<input type="text"   name=fileName id="fileName" class="file_input_textbox" readonly="readonly">
 		<div class="file_input_div">
 		<input type="button" value="Search files" class="file_input_button" />
 		<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
 	</div>
+		-->
 	</td>
 	</tr>
 	<tr>
-		<td><input type="button" value="확인" onclick="check();"style="height: 30px; width:60px; background-color: green; font-size='5'">
+		<td><input type="button" class="btn btn-success" value="확인" onclick="check();"style=" width:100px;">
 		<td></td>
 </form>
-		<td align="right" ><input type="button" onclick="location.href='./login.html'" style="height: 30px; width:65px;"value="돌아가기"></button></td>
+		<td align="right" ><input type="button" class="btn btn-default" onclick="location.href='./login.html'" style=" width:100px;"value="돌아가기"></button></td>
 	</tr>
 </table>
 
 
-
+</div>
 
 
 <script>

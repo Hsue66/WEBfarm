@@ -93,7 +93,7 @@ header("Content-Type: text/html; charset= UTF-8 ");
 		$p_name = $_POST['p_name'];
 		$p_count = $_POST['p_count'];		
 		$p_cost = $_POST['p_cost'];	
-		$p_photo = $_POST['p_photo'];
+	//	$p_photo = $_POST['p_photo'];
 
 		$nse_content = $_POST['ir1'];
 		$sql = "insert into product(PNUM,FNUM,PCOUNT,PNAME,PPHOTO,DESCRIPTION,PRICE)";

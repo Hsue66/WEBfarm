@@ -1,9 +1,13 @@
+<? include "lib.php" ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="registry.css"/>
 
 <style>
 a:link     {color:green;text-decoration:none} 
@@ -12,22 +16,47 @@ a:active   {color:green;text-decoration:none}
 a:hover    {color:green;text-decoration:none} 
 </style>
 
-<div align="left" >
-	<font  SIZE="6" color="green" face="궁서체">
-	   <a href="http://localhost/web/main.html">WEB FARM</a>
-	</font>
-</div>
-	<br/>
-	<br/>
-	<div align="center">
+</head>
+
+<body background="./photo/back.jpg">
+    <div id="body1">
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost/web/main.html">Web farm</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li><a href="http://localhost/web/login.html">로그인</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            if(isset($_SESSION["id"])){
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src="./photo/user.jpg"  style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
+          </ul>
+        </div>
+</div>	
+<br/>
+<br/>
+
+
+	<div id="header" align="center">
 	<font SIZE="9" color="black" face="돋움">
 	로그인
 	</font>
 	</div>
 	<HR size="3" color="black" WIDTH="100%">
-	
-</head>
-<body>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -41,29 +70,28 @@ a:hover    {color:green;text-decoration:none}
 	<tr>
 		<td class="success">ID</td>
 		<td></td>
-		<td class="success"><input type=text name=id></td>
+		<td class="success"><input type=text class="form-control" name=id></td>
 	</tr>
 		<td>PASSWORD</td>
 		<td></td>
-		<td><input type=password name=password></td>
+		<td><input type=password class="form-control" name=password></td>
 		
 	<tr><td>&nbsp</td></tr>
 	<tr>
-		<td><input type="submit" value="Login" class="btn btn-success" style="height: 30px; width:60px; background-color: green; font-size='5'">
+		<td><input type="submit" value="Login" class="btn btn-success" style=" width:100px;">
 		<td></td>
 </form>
-		<td align="right" ><input type="button" onclick="location.href='./main.html'"; style="height: 30px; width:60px;" value="Cancel"></td>
+		<td align="right" ><input type="button" class="btn btn-default"  onclick="location.href='./main.html'"; style="width:100px;" value="Cancel"></td>
 	</tr>
 	<tr>
 	<td></td>
 	<td align="center"> 
-<input type="button" class="btn btn-success" onclick="location.href='http://localhost//web//registry.html'";	style="height: 40px; width:80px; background-color: green" value="회원가입">
+	</br>
+<input type="button" class="btn btn-success" onclick="location.href='http://localhost//web//registry.html'";	style=" width:100px; " value="회원가입">
 
 	</td>
 	</tr>
 </table>
-
-<div>
 
 </div>
 <script>

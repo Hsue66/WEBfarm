@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="./bootstrap/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="reserve.css"/>
+	
+<link rel="stylesheet" type="text/css" href="farmMan.css" />
 
 	<!--datepicker 사용용-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
@@ -23,8 +24,9 @@
 	</style>
 </head>
 
-<body>
-	<!-- 상단 네비게이션 바 -->
+<body background="./photo/back.jpg">
+    <div id="body1">
+             <!-- 상단 네비게이션 바 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
@@ -40,6 +42,14 @@
             <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
             <li><a href="#contact">회원가입</a></li>
+             <?
+            if(isset($_SESSION["id"])){
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src="./photo/user.jpg"  style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
           </ul>
         </div>
 </div>

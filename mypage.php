@@ -44,6 +44,7 @@
         con.eq(i).show();
     });
   }
+
 </script>
 
 <body>
@@ -94,11 +95,14 @@
                 var price = 0;      
                 var checkArr = document.getElementsByName("product[]");
                 for(var i = 0 ; i<checkArr.length ; i++){
-                  if(checkArr[i].checked == true)
+                  if(checkArr[i].checked == true){
                     price += Number(checkArr[i].value);
+
+                  }
                 }
                 $("#price").text(" "+price+" 원");
             }
+
           </script>
           <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
@@ -113,6 +117,7 @@
           $price;
           while($row = mysql_fetch_array($res))
           {
+            $tmp.=$row['PPHOTO']."/".$row['PNAME']."/".$row['COUNT']."/".$row['PRICE']."/".$row['PRICE']*$row['COUNT'];
             echo "<tr><td><input type=checkbox name='product[]' value=".$row['PRICE']*$row['COUNT']." onclick=\"checkfunc();\"></td>
             <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
             <td>".$row['PNAME']."</td>
@@ -120,20 +125,17 @@
             <td>".$row['PRICE']*$row['COUNT']."</td></tr>";
           }
           ?>
-          <script>
-            function check()
-            { 
-             // $("#price").text($("#").val());
-            }
-          </script>
           </table>
             결제금액<strong id = "price"></strong>
           </br>
-            <button id="buy" class="btn btn-success"> 구매하기</button>
+          <?
+
+            echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>'
+          ?>
         </div>
 
 
-        <div>주문목록 페이지
+        <div>
  <?
             $id = $_GET['id'];
             $sql = "select PNAME,PPHOTO,COUNT,ORDERS.PRICE, ADDR, PHONE, CUSTOMER
@@ -184,7 +186,32 @@
 
 
 
-        <div>예약목록 </div>
+        <div>
+        <?
+            $id = $_GET['id'];
+            $sql = "select FNUM, SDATE, FDATE
+                      from RESERVE
+                      where USERID='".$id."'";
+            $res = mysql_query($sql);
+          ?>
+          <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+            <tr>
+              <th width="100">농장번호</th>
+              <th width="100">시작일자</th>
+              <th width="100">끝일자</th>
+            </tr>
+            <tr>
+          <?
+          while($row = mysql_fetch_array($res))
+          {
+            echo "<tr>
+            <td>".$row['FNUM']."</td>
+            <td>".$row['SDATE']."</td>
+            <td>".$row['FDATE']."</td>
+            </tr>";
+          }
+          ?>
+          </table>
       </div>
     </div>  
 
