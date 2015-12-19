@@ -2,6 +2,18 @@
 <head>
     <meta charset="utf-8">
     <title>개인 농장 페이지</title>
+        
+    
+        
+     <!--스타일시트 추가-->
+    <link rel="stylesheet" href="slidebannerthr/css/style.css">
+    <!--jQuery 라이브러리 추가-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!--jQuery 플러그인 추가-->
+    <script src="slidebannerthr/js/jquery.banner.js"></script>
+    <!--jQuery 플러그인 옵션 설정 추가-->
+    <script src="slidebannerthr/js/script.js"></script>
+
 </head>
 <body>
      <!--gittest-->
@@ -46,6 +58,27 @@
                 echo "User name : " ,$username, "<br/>", "<br/>";
             ?>
             </div>
+    
+    
+    
+    <!-- 사진 넘어가는 코드-->
+ 
+    <div id="image_list_1">
+        <div class="clsBannerScreen">
+            <div class="images" style="display:block">
+                <img src="photo/ex1.png">
+            </div>
+            <div class="images"><img src="photo/ex2.png"></div>
+            <div class="images"><img src="photo/ex3.png"></div>
+            <div class="images"><img src="photo/ex4.png"></div>
+            <div class="images"><img src="photo/ex5.png"></div>
+        </div>
+    </div>
+
+    <!--여기까지-->
+    
+    
+    
             <div>
                   
                 <img width = "100" heigth = "100" src=<?=$userphoto?>><br/><br/> 
