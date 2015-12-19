@@ -7,11 +7,16 @@
         <meta charset="utf-8">
         <title>Web Farm</title>
        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    
 <style>
 #login{
-width: 225px;
-height: 100px;
-background-image:url('./images/back.jpg');
+width: 180px;
+height: 300px;
+padding-right: 30px;
 }
 
 </style>
@@ -82,14 +87,18 @@ background-image:url('./images/back.jpg');
 		<?if(!$_SESSION["id"]){?>
         <div id="login" style="float: right" style="">
 		<form action="./login.php" method="post">
-		ID&nbsp&nbsp&nbsp<input type=text name=id><br/>
-		PW &nbsp<input type=password name=password><br/>
-		<input type=submit value ="로그인" style="background-color: green; float: right;">
-		<input type="button" value="회원가입" onclick="location.href='./registry.html'" style="background-color: green; float: right;">
+		ID<input type=text name=id  class="form-control">
+		PW <input type=password name=password  class="form-control"><br/>
+        <div class = "btn-group">
+       
+		<input type="button" class="btn btn-default" value="회원가입" onclick="location.href='./registry.html'" style="background-color: green; ">
+
+        <input type=submit class="btn btn-success" value ="로그인" style="background-color: green;">
+        </div>
 		</form>
 		</div>
 		<?}else{ ?>
-		<input type="button"  onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
+		<input type="button" class="btn btn-default" onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
 		<?}?>
 
             
