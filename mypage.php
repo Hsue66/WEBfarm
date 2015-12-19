@@ -1,3 +1,6 @@
+<?  include "lib.php";
+    include "./connect_db.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -76,32 +79,111 @@
 
       <div class="tab_menu" id="tab_menu">
         <div>
-            <table width="800px" height="80px" border="1" align="center" >
-            <thead style="text-align:center;">
-              <tr>
-                <th> </th>
-                <th>제품</th>
-                <th>판매 농장</th>
-                <th>수량</th>
-                <th>가격</th>
-              </tr>
-            </thead>
-            <tbody>
-            <script>
-                for (var i=1; i <5; i++){
-                  document.write('<tr>');
-                   document.write('<td  width="150px" height="50px" style="text-align:center;">');
-                    document.write ('</td>');   
-                  for(var j=1 ; j<5 ; j++){
-                    document.write('<td  width="150px" height="50px" style="text-align:center;">');
-                    document.write ('</td>');  
-                  }
-                  document.write ('</tr>');}
-            </script>
-            </tbody></table>
+          <?
+            $id = $_GET['id'];
+            $sql = "select PNAME,PPHOTO,COUNT,PRICE
+                      from PRODUCT join CART on CART.PNUM = PRODUCT.PNUM
+                      where USERID='".$id."'";
+
+            $res = mysql_query($sql);
+          ?>
+
+          <script type="text/javascript">
+           function checkfunc()
+          {
+                var price = 0;      
+                var checkArr = document.getElementsByName("product[]");
+                for(var i = 0 ; i<checkArr.length ; i++){
+                  if(checkArr[i].checked == true)
+                    price += Number(checkArr[i].value);
+                }
+                $("#price").text(" "+price+" 원");
+            }
+          </script>
+          <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+            <tr>
+              <th width ="50">선택</th>
+              <th width="100">제품사진</th>
+              <th width="150">제품명</th>
+              <th width="150">수량</th>
+              <th width="150">가격</th>
+            </tr>
+            <tr>
+           <?
+          $price;
+          while($row = mysql_fetch_array($res))
+          {
+            echo "<tr><td><input type=checkbox name='product[]' value=".$row['PRICE']*$row['COUNT']." onclick=\"checkfunc();\"></td>
+            <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
+            <td>".$row['PNAME']."</td>
+            <td>".$row['COUNT']."</td>
+            <td>".$row['PRICE']*$row['COUNT']."</td></tr>";
+          }
+          ?>
+          <script>
+            function check()
+            { 
+             // $("#price").text($("#").val());
+            }
+          </script>
+          </table>
+            결제금액<strong id = "price"></strong>
+          </br>
             <button id="buy" class="btn btn-success"> 구매하기</button>
         </div>
-        <div>주문목록 페이지</div>
+
+
+        <div>주문목록 페이지
+ <?
+            $id = $_GET['id'];
+            $sql = "select PNAME,PPHOTO,COUNT,ORDERS.PRICE, ADDR, PHONE, CUSTOMER
+                      from PRODUCT join ORDERS on ORDERS.PNUM = PRODUCT.PNUM
+                      where USERID='".$id."'";
+
+            $res = mysql_query($sql);
+          ?>
+
+          <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+            <tr>
+              <th width="100">주문자</th>
+              <th width="100">제품사진</th>
+              <th width="100">제품명</th>
+              <th width="100">수량</th>
+              <th width="100">가격</th>
+              <th width="150">주소</th>
+              <th width="100">전화번호</th>
+
+            </tr>
+            <tr>
+          <?
+          $price=0;
+          while($row = mysql_fetch_array($res))
+          {
+            echo "<tr>
+            <td>".$row['CUSTOMER']."</td>
+            <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
+            <td>".$row['PNAME']."</td>
+            <td>".$row['COUNT']."</td>
+            <td>".$row['PRICE']*$row['COUNT']."</td>
+            <td>".$row['ADDR']."</td>
+            <td>".$row['PHONE']."</td>
+            </tr>";
+            
+            //$price=$row['PRICE']*$buy_count;
+          }
+          ?>
+          <script>
+            function check()
+            { 
+             // $("#price").text($("#").val());
+            }
+          </script>
+          </table>
+
+        </div>
+
+
+
         <div>예약목록 </div>
       </div>
     </div>  

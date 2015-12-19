@@ -6,11 +6,13 @@
     <head>
         <meta charset="utf-8">
         <title>Web Farm</title>
-       
+       <link rel="stylesheet" type="text/css" href="main.css"/>
     </head>
-    <body>
-        
-        <center><a href="main.html"><img src="./photo/logo.png" width="250", height="80"></a></center>
+
+    <body background="./photo/back.jpg">
+        <div id='body1'>
+
+        <center><a href="main.html"><img src="./photo/logo.png" , height="150"></a></center>
         
         <?
             $now=$_SESSION['id'];
@@ -47,7 +49,7 @@
                         location.href="/web/mypage.php?&id=<?=$id?>";
                     }
                 </script>
-                
+
         <?if($now==NULL){?>
         <div style="float:right">
         <input type=button onclick="location.href='http://localhost/web/login.html'"; value="Login">
@@ -67,19 +69,19 @@
         <?}?>
         <center><table>
             <tr>
-                <th width="250" height="100"><?if($farm1user==NULL){?><a href="farmReserve.php?farmnum=1"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm1user==$now){?><a href="farmmanage.html?farmnum=1" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=1" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
-                <th width="250" height="100"><?if($farm2user==NULL){?><a href="farmReserve.php?farmnum=2"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm2user==$now){?><a href="farmmanage.html?farmnum=2" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=2" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
-                <th width="250" height="100"><?if($farm3user==NULL){?><a href="farmReserve.php?farmnum=3"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm3user==$now){?><a href="farmmanage.html?farmnum=3" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=3" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+                <th width="250" height="300"><?if($farm1user==NULL){?><a href="farmReserve.php?farmnum=1"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm1user==$now){?><a href="farmmanage.html?farmnum=1" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=1" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
+                <th width="250" height="300"><?if($farm2user==NULL){?><a href="farmReserve.php?farmnum=2"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm2user==$now){?><a href="farmmanage.html?farmnum=2" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=2" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
+                <th width="250" height="300"><?if($farm3user==NULL){?><a href="farmReserve.php?farmnum=3"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm3user==$now){?><a href="farmmanage.html?farmnum=3" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=3" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
             </tr>
             <tr>
-                <th width="250" height="100"><?if($farm4user==NULL){?><a href="farmReserve.php?farmnum=4"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm4user==$now){?><a href="farmmanage.html?farmnum=4" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=4" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
-                <th width="250" height="100"><?if($farm5user==NULL){?><a href="farmReserve.php?farmnum=5"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm5user==$now){?><a href="farmmanage.html?farmnum=5" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=5" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
-               <th width="250" height="100"><?if($farm6user==NULL){?><a href="farmReserve.php?farmnum=6"><img src="./photo/1.png" width="250" height="100"></a><?}elseif($farm6user==$now){?><a href="farmmanage.html?farmnum=6" ><img src="./photo/1.png" width="250" height="100"></a> <?}else{?><a href="farm.html?farmnum=6" ><img src="./photo/1.png" width="250" height="100"></a> <?}?></th>
+                <th width="250" height="300"><?if($farm4user==NULL){?><a href="farmReserve.php?farmnum=4"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm4user==$now){?><a href="farmmanage.html?farmnum=4" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=4" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
+                <th width="250" height="300"><?if($farm5user==NULL){?><a href="farmReserve.php?farmnum=5"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm5user==$now){?><a href="farmmanage.html?farmnum=5" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=5" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
+               <th width="250" height="300"><?if($farm6user==NULL){?><a href="farmReserve.php?farmnum=6"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm6user==$now){?><a href="farmmanage.html?farmnum=6" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=6" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
             </tr>
         </table></center>
 		
 		
-        
+        </div>
         
         
     </body>
