@@ -55,6 +55,10 @@ echo $id;
 $sql = "insert into orders values ('$f_num','$id','$p_num','$buy_count','$price','$user_address','$user_phone','$user_name' ) ";
 $chk_result=mysql_query($sql) or die(mysql_error());
 
+$sql = "UPDATE PRODUCT SET PCOUNT = PCOUNT-$buy_count WHERE PNUM =$p_num";
+$chk_result = mysql_query($sql) or die(mysql_error());
+
+
     echo "<script> alert('결제 완료 되었습니다.');";
     echo "location.href='./farm.html?farmnum=$f_num'; </script>";
 }
