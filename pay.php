@@ -110,7 +110,7 @@ while($row = mysql_fetch_array($chk_result))
 
 	<input type="submit" value="결제하기" style="height: 30px; width:80px; background-color: green; font-size='5'">
 </form>
-<td align="right" ><button onclick="goBack()" style="height: 30px; width:80px;">취소하기</button></td>
+<td align="right" ><input type="button" onclick="goBack()" style="height: 30px; width:80px;" value="취소하기"></button></td>
 </div>
 
 <br/><br/>
@@ -118,7 +118,12 @@ while($row = mysql_fetch_array($chk_result))
 <script>
 function goBack()
 {
-	window.history.back();
+	
+  if( confirm(" 정말로 취소하시겠습니까?" ) ){
+window.history.back();
+   }
+}
+</script>
 }
 
 </script>

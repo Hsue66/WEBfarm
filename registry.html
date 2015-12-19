@@ -87,7 +87,7 @@ a:hover    {color:green;text-decoration:none}
 		<td>사진</td>
 		<td></td>
 	<td>
-		<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+		<input type="text"  name=fileName id="fileName" class="file_input_textbox" readonly="readonly">
 		<div class="file_input_div">
 		<input type="button" value="Search files" class="file_input_button" />
 		<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
@@ -95,10 +95,10 @@ a:hover    {color:green;text-decoration:none}
 	</td>
 	</tr>
 	<tr>
-		<td><input type="submit" value="확인" style="height: 30px; width:60px; background-color: green; font-size='5'">
+		<td><input type="button" value="확인" onclick="check();"style="height: 30px; width:60px; background-color: green; font-size='5'">
 		<td></td>
 </form>
-		<td align="right" ><button onclick="goBack()" style="height: 30px; width:60px;">돌아가기</button></td>
+		<td align="right" ><input type="button" onclick="location.href='./login.html'" style="height: 30px; width:65px;"value="돌아가기"></button></td>
 	</tr>
 </table>
 
@@ -107,10 +107,6 @@ a:hover    {color:green;text-decoration:none}
 
 
 <script>
-function goBack()
-{
-	window.history.back();
-}
 
 function check()
 {
@@ -120,24 +116,24 @@ function check()
     if(f.id.value == ""){
         // 8.값이 없으면 경고창으로 메세지 출력 후 함수 종료
         alert("아이디를 입력해 주세요.");
-        return false;
+       // return false;
     }
 
-    if(f.name.value == ""){
+    else if(f.name.value == ""){
         alert("이름을 입력해 주세요.");
-        return false;
+       // return false;
     }
 
-    if(f.password.value == ""){
+    else if(f.password.value == ""){
         alert("비밀번호를 입력해 주세요.");
-        return false;
+        //return false;
     }
 
-    
+    else{
 
     // 10.검사가 성공이면 form 을 submit 한다
     f.submit();
-
+}
 }
 
 </script>

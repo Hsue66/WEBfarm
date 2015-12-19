@@ -51,7 +51,7 @@ a:hover    {color:green;text-decoration:none}
 		<td><input type="submit" value="Login" class="btn btn-success" style="height: 30px; width:60px; background-color: green; font-size='5'">
 		<td></td>
 </form>
-		<td align="right" ><button onclick="goBack()" style="height: 30px; width:60px;">Cancel</button></td>
+		<td align="right" ><input type="button" onclick="location.href='./main.html'"; style="height: 30px; width:60px;" value="Cancel"></td>
 	</tr>
 	<tr>
 	<td></td>
@@ -68,7 +68,7 @@ a:hover    {color:green;text-decoration:none}
 <script>
 function goBack()
 {
-	window.history.back();
+	location.replace(./main.html);
 }
 
 </script>
