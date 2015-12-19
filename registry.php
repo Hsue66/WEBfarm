@@ -64,16 +64,16 @@ $f_num =$_POST[f_num];
 $p_num =$_POST[p_num];
 $buy_count =$_POST[buy_count];
 $price =$_POST[$price];
-
+$photo=$_POST[fileName];
 
 $user_name = mysql_real_escape_string($user_name);
 $user_id=mysql_real_escape_string($user_id);
 $user_pass=mysql_real_escape_string($user_pass);
+$photo=mysql_real_escape_string($photo);
 
 
 
-
-$sql = "insert into USER (USERID,USERPW,NAME,UPHOTO) values ('".trim($user_id)."', '".trim($user_pass)."', '".trim($user_name)."', ' ')";
+$sql = "insert into USER (USERID,USERPW,NAME,UPHOTO) values ('".trim($user_id)."', '".trim($user_pass)."', '".trim($user_name)."', '".trim($photo)."')";
 mysql_query($sql);
 
 alert("회원가입이 완료 되었습니다.","http://localhost//web//main.html");

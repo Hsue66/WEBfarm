@@ -10,6 +10,26 @@ include "lib.php";
 </html>
 
 <?
+
+if(trim($_POST[username]) == ""){
+        echo "<script> alert('이름을 입력하세요.');</script>";
+		echo "<script language='javascript'>history.back();";
+		echo "</script>";
+}
+
+else if(trim($_POST[userphone]) == ""){
+        echo "<script> alert('핸드폰 번호를 입력하세요.');</script>";
+		echo "<script language='javascript'>history.back();";
+		echo "</script>";
+}
+
+else if($_POST[useraddress] == ""){
+        echo "<script> alert('주소를 입력하세요. ');</script>";
+		echo "<script language='javascript'>history.back();";
+		echo "</script>";
+}
+
+else{
 $name=htmlspecialchars($_POST["username"]);
 $phone=htmlspecialchars($_POST["userphone"]);
 $address=htmlspecialchars($_POST["useraddress"]);
@@ -37,6 +57,9 @@ $chk_result=mysql_query($sql) or die(mysql_error());
 
     echo "<script> alert('결제 완료 되었습니다.');";
     echo "location.href='./farm.html?farmnum=$f_num'; </script>";
+}
 ?>
+
+
 
 
