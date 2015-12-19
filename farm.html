@@ -91,7 +91,11 @@
                 echo $username, "님의 농장", "<br/>";
             ?>
         </h1>
+                    
             </div>
+        <div style="font-size:20px;" align="center">
+                    
+                농장 주인의 한마디!&nbsp;&nbsp;&nbsp;  "<? echo $mention; ?>"&nbsp;&nbsp;&nbsp;</div>
     
     
     
@@ -110,37 +114,44 @@
     </div>
 
     <!--여기까지-->
-            <div>
-              
-                 농장 주인의 한마디!&nbsp;&nbsp;  "<? echo $mention; ?>"<br/>
+            
+    <div align="right">
                 <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
                 <input type=button onclick="location.href='http://localhost/web/farmReserve.php?farmnum=<?=$fnum?>'"; value="예약 하기">
              
             </div>
-
+    <br/><br/><br/>
+            <table align="center" style="font-size: 20px; font-family:맑은 고딕;">
+                <tr>
             
             <?
             $arr=array();
             $i=0;
-    
+            $j=0;
             while($data_row = mysql_fetch_array($que3))
             {
                  $arr[i] = $data_row['PNum']; //여기에 각각 구매 페이지 링크 걸어.
             ?>
-               
-    <div style="float:left"><a href=productInfo.php?pnum=<?=$arr[i]?>&fnum=<?=$fnum?>><img src=<?='./photo/'.$data_row['PPhoto']?> width = 100 height=100></a><br/>
+                <td>
+   <a href=productInfo.php?pnum=<?=$arr[i]?>&fnum=<?=$fnum?>><img src=<?='./photo/'.$data_row['PPhoto']?> style="width: 150px; height: 150px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
             <?
                 
               
-                echo "Product Name : ", $data_row['PName'], "<br/>"; 
-                echo "Product Count : ", $data_row['PCount'], "<br/>";
-                echo "Product Price : ", $data_row['Price'], "<br/>";
-              
-            ?></div><?
-            
+                echo "상품 이름 : ", $data_row['PName'], "<br/>"; 
+                echo "재고량 : ", $data_row['PCount'], "<br/>";
+                echo "가격 : ", $data_row['Price'], "<br/>";
+                
+                $j++;
+                ?></td><?
+                if($j%5==0)
+                {   
+                    ?></tr><tr><?
+                }
+
+
             }
         ?>
-    <br/><br/>
+    <br/><br/> </tr></table>
  
 </div>
 
