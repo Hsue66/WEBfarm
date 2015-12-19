@@ -7,7 +7,17 @@
         <meta charset="utf-8">
         <title>Web Farm</title>
        <link rel="stylesheet" type="text/css" href="main.css"/>
-    </head>
+<style>
+#login{
+width: 225px;
+height: 100px;
+background-image:url('./images/back.jpg');
+}
+
+</style>
+
+	   
+	   </head>
 
     <body background="./photo/back.jpg">
         <div id='body1'>
@@ -51,10 +61,7 @@
                 </script>
 
         <?if($now==NULL){?>
-        <div style="float:right">
-        <input type=button onclick="location.href='http://localhost/web/login.html'"; value="Login">
-        </div>
-        
+      
 
         <?}else
         {
@@ -64,9 +71,20 @@
             $que10=mysql_query("SELECT UPHOTO FROM user WHERE USERID='$now'");
             $loginphoto = mysql_result($que10, 0);
         ?><img src="./photo/<?=$loginphoto?>" width="50" height="50" onclick="mypage()"><? echo $loginname, " 님 환영합니다.";?>
-        <input type="button"  onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
+          <?}?>
+		<?if(!$_SESSION["id"]){?>
+        <div id="login" style="float: right" style="">
+		<form action="./login.php" method="post">
+		ID&nbsp&nbsp&nbsp<input type=text name=id><br/>
+		PW &nbsp<input type=password name=password><br/>
+		<input type=submit value ="로그인" style="background-color: green; float: right;">
+		</form>
+		</div>
+		<?}else{ ?>
+		<input type="button"  onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
+		<?}?>
 
-        <?}?>
+       
         <center><table>
             <tr>
                 <th width="250" height="300"><?if($farm1user==NULL){?><a href="farmReserve.php?farmnum=1"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm1user==$now){?><a href="farmmanage.html?farmnum=1" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=1" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
