@@ -5,3 +5,8 @@
 	margin-right:50px;
 	background-color: white;
 }
+body
+{
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}

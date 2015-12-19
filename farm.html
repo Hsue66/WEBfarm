@@ -1,10 +1,14 @@
+<? include "lib.php" ?>
 <html>
 <head>
     <meta charset="utf-8">
     <title>개인 농장 페이지</title>
         
-    
-        
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="farm.css"/>
      <!--스타일시트 추가-->
     <link rel="stylesheet" href="slidebannerthr/css/style.css">
     <!--jQuery 라이브러리 추가-->
@@ -15,9 +19,36 @@
     <script src="slidebannerthr/js/script.js"></script>
 
 </head>
-<body>
-     <!--gittest-->
-     <!--onemore-->
+<body background="./photo/back.jpg">
+    <div id="body1">
+             <!-- 상단 네비게이션 바 -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost/web/main.html">Web farm</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li><a href="http://localhost/web/login.html">로그인</a></li>
+            <li><a href="#contact">회원가입</a></li>
+             <?
+            if(isset($_SESSION["id"])){
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src="./photo/user.jpg"  style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
+          </ul>
+        </div>
+</div>
+<div id='content'>
     <?
            
             $fnum = $_GET['farmnum'];
@@ -49,14 +80,17 @@
             $username = mysql_result($que2, 0);
              $userphoto = './photo/'.mysql_result($que4, 0);
             ?>
-            <div align="center">
+            <div id="header" align="center">
                 
-            <?
- 
 
-                echo $farmname, "<br/>";
-                echo "User name : " ,$username, "<br/>", "<br/>";
+               
+              <h1>  
+                 <img width = "100" heigth = "100" src=<?=$userphoto?>>
+            <?
+               
+                echo $username, "님의 농장", "<br/>";
             ?>
+        </h1>
             </div>
     
     
@@ -68,25 +102,23 @@
             <div class="images" style="display:block">
                 <img src="photo/ex1.png">
             </div>
-            <div class="images"><img src="photo/ex2.png"></div>
-            <div class="images"><img src="photo/ex3.png"></div>
-            <div class="images"><img src="photo/ex4.png"></div>
-            <div class="images"><img src="photo/ex5.png"></div>
+            <div class="images"><img id='slide' src="photo/ex2.png"></div>
+            <div class="images"><img id='slide' src="photo/ex3.png"></div>
+            <div class="images"><img id='slide'src="photo/ex4.png"></div>
+            <div class="images"><img id='slide' src="photo/ex5.png"></div>
         </div>
     </div>
 
     <!--여기까지-->
-    
-    
-    
             <div>
-                  
-                <img width = "100" heigth = "100" src=<?=$userphoto?>><br/><br/> 
+              
                  농장 주인의 한마디!&nbsp;&nbsp;  "<? echo $mention; ?>"<br/>
                 <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
                 <input type=button onclick="location.href='http://localhost/web/farmReserve.php?farmnum=<?=$fnum?>'"; value="예약 하기">
              
             </div>
+
+            
             <?
             $arr=array();
             $i=0;
@@ -110,7 +142,8 @@
         ?>
     <br/><br/>
  
-    
+</div>
 
+</div>
 </body>
 </html>
