@@ -101,31 +101,39 @@
                 농장 사진 변경하기 : <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="farmpic"/><br/><br/>
                 농장 주인의 한마디!&nbsp;&nbsp;  <textarea name="mention" ><?=$mention?></textarea><br/><br/>
                 
-            <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?><br/>
+            <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?><br/><br/><br/><br/><br/>
             </div>
+          
+            <table align="center" style="font-size: 20px; font-family:맑은 고딕;"><tr>
             <?
             $arr=array();
             $i=0;
-    
+            $j=0;
             while($data_row = mysql_fetch_array($que3))
             {
                  $arr[i] = $data_row['PNum'];
             ?>
-               
-    <div style="float:left"><a href="#" onclick="func(<?=$data_row['PNum']?>)");><img src=<?='./photo/'.$data_row['PPhoto']?> width = 100 height=100></a><br/>
+            <td>
+    <a href="#" onclick="func(<?=$data_row['PNum']?>)");><img src=<?='./photo/'.$data_row['PPhoto']?> style="width: 150px; height: 150px;"></a><br/>
             <?
                 
-             //   echo "Product Number : ", $data_row['PNum'], "<br/>";
+               echo "Product Number : ", $data_row['PNum'], "<br/>";
                 echo "Product Name : ", $data_row['PName'], "<br/>"; 
                 echo "Product Count : ", $data_row['PCount'], "<br/>";
                  echo "Product Price : ", $data_row['Price'], "<br/>";
-              //  echo "Product Descption : ", $data_row['Descption'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>", "<br/>";
-            ?></div><?
-            
+                echo "Product Descption : ", $data_row['Descption'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>", "<br/>";
+      
+                $j++;
+?></td><?
+                if($j%5==0)
+                {   
+                    ?></tr><tr><?
+                }
             }
         ?>
-    <br/><br/>
-    <a href="register.php?farmnum=<?=$fnum?>"><img src="./photo/plus.jpg"></a><br/><br/><br/>
+               <td> <a href="register.php?farmnum=<?=$fnum?>"><img src="./photo/plus.jpg"></a><br/><br/><br/></td> </tr></table>
+   
+   
     <input type="submit" value="저장">
     </form>
 
