@@ -88,6 +88,18 @@
             $res = mysql_query($sql);
           ?>
 
+          <script type="text/javascript">
+           function checkfunc()
+          {
+                var price = 0;      
+                var checkArr = document.getElementsByName("product[]");
+                for(var i = 0 ; i<checkArr.length ; i++){
+                  if(checkArr[i].checked == true)
+                    price += Number(checkArr[i].value);
+                }
+                $("#price").text(" "+price+" 원");
+            }
+          </script>
           <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
               <th width ="50">선택</th>
@@ -97,17 +109,15 @@
               <th width="150">가격</th>
             </tr>
             <tr>
-          <?
-          $price=0;
+           <?
+          $price;
           while($row = mysql_fetch_array($res))
           {
-            echo "<tr><td><input type=radio name='product' onclick='check()'></td>
+            echo "<tr><td><input type=checkbox name='product[]' value=".$row['PRICE']*$row['COUNT']." onclick=\"checkfunc();\"></td>
             <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
             <td>".$row['PNAME']."</td>
             <td>".$row['COUNT']."</td>
             <td>".$row['PRICE']*$row['COUNT']."</td></tr>";
-            
-            //$price=$row['PRICE']*$buy_count;
           }
           ?>
           <script>
@@ -126,7 +136,7 @@
         <div>주문목록 페이지
  <?
             $id = $_GET['id'];
-            $sql = "select PNAME,PPHOTO,COUNT,PRICE, ADDR, PHONE, CUSTOMER
+            $sql = "select PNAME,PPHOTO,COUNT,ORDERS.PRICE, ADDR, PHONE, CUSTOMER
                       from PRODUCT join ORDERS on ORDERS.PNUM = PRODUCT.PNUM
                       where USERID='".$id."'";
 
@@ -135,22 +145,29 @@
 
           <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
-              <th width ="50">선택</th>
+              <th width="100">주문자</th>
               <th width="100">제품사진</th>
-              <th width="150">제품명</th>
-              <th width="150">수량</th>
-              <th width="150">가격</th>
+              <th width="100">제품명</th>
+              <th width="100">수량</th>
+              <th width="100">가격</th>
+              <th width="150">주소</th>
+              <th width="100">전화번호</th>
+
             </tr>
             <tr>
           <?
           $price=0;
           while($row = mysql_fetch_array($res))
           {
-            echo "<tr><td><input type=radio name='product' onclick='check()'></td>
+            echo "<tr>
+            <td>".$row['CUSTOMER']."</td>
             <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
             <td>".$row['PNAME']."</td>
             <td>".$row['COUNT']."</td>
-            <td>".$row['PRICE']*$row['COUNT']."</td></tr>";
+            <td>".$row['PRICE']*$row['COUNT']."</td>
+            <td>".$row['ADDR']."</td>
+            <td>".$row['PHONE']."</td>
+            </tr>";
             
             //$price=$row['PRICE']*$buy_count;
           }
