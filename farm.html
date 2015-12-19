@@ -130,7 +130,8 @@
             $j=0;
             while($data_row = mysql_fetch_array($que3))
             {
-                 $arr[i] = $data_row['PNum']; //여기에 각각 구매 페이지 링크 걸어.
+                 if($data_row['PCount']==0) continue;
+				 $arr[i] = $data_row['PNum']; //여기에 각각 구매 페이지 링크 걸어.
             ?>
                 <td>
    <a href=productInfo.php?pnum=<?=$arr[i]?>&fnum=<?=$fnum?>><img src=<?='./photo/'.$data_row['PPhoto']?> style="width: 150px; height: 150px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
