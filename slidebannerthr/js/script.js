@@ -3,8 +3,8 @@
    {
     //첫번째 배너
     $( "#image_list_1" ).jQBanner( {//롤링을 할 영역의 ID 값
-        nWidth: 904,				//영역의 width
-        nHeight: 456,				//영역의 height
+        nWidth: 800,				//영역의 width
+        nHeight: 400,				//영역의 height
         nCount: 3,					//돌아갈 이미지 개수
         isActType: "up",			//움직일 방향 (left, right, up, down)
         nOrderNo: 1,				//초기 이미지
