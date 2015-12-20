@@ -1,4 +1,5 @@
-<? include "lib.php" ?>
+<? include "lib.php";
+ include "./connect_db.php"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -35,6 +36,15 @@
             <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
             <li><a href="#contact">회원가입</a></li>
+				  <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <?
+					$id=trim($_SESSION["id"]);
+					$sql = "select UPHOTO from USER where USERID='$id'";
+					$res=mysql_query($sql) or die(mysql_error());
+					$photo=mysql_fetch_array($res);
+					?>
+                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
+                 
           </ul>
         </div>
 </div>
@@ -48,7 +58,7 @@
 		$f_num = $_GET['fnum'];
 		//$f_num = 3;
 		 
-		 include "./connect_db.php";
+		
 		
 		 $sql = "select PCOUNT,PNAME,PPHOTO,description,PRICE from product where PNUM=";
 		 $sql .= $p_num." and FNUM=".$f_num;

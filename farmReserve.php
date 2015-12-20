@@ -46,7 +46,14 @@
             if(isset($_SESSION["id"])){
           ?>
             <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
-            <li><img src="./photo/user.jpg"  style="width: 40px; height: 50px;"></li>
+            <?
+					$id=trim($_SESSION["id"]);
+					$sql = "select UPHOTO from USER where USERID='$id'";
+					$res=mysql_query($sql) or die(mysql_error());
+					$photo=mysql_fetch_array($res);
+					?>
+                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
+                    
             <?
             }
           ?>
