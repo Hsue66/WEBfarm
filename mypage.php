@@ -82,7 +82,7 @@
         <div>
           <?
             $id = $_GET['id'];
-            $sql = "select PNAME,PPHOTO,COUNT,PRICE
+            $sql = "select PNAME,PPHOTO,COUNT,PRICE,CART.PNUM,PRODUCT.FNUM
                       from PRODUCT join CART on CART.PNUM = PRODUCT.PNUM
                       where USERID='".$id."'";
 
@@ -115,25 +115,66 @@
             <tr>
            <?
           $price;
+		  $k=0;
+		  echo "<form name=cartform action='mypage_cartpay.php' method='post'>";
           while($row = mysql_fetch_array($res))
           {
             $tmp.=$row['PPHOTO']."/".$row['PNAME']."/".$row['COUNT']."/".$row['PRICE']."/".$row['PRICE']*$row['COUNT'];
             echo "<tr><td><input type=checkbox name='product[]' value=".$row['PRICE']*$row['COUNT']." onclick=\"checkfunc();\"></td>
+			<input type='hidden' name='list[]' value=".$row['PNUM'].">
+			<input type='hidden' name='list_check[]' value=".$k.">
+			<input type='hidden' name='buy_count[]' value=".$row['COUNT'].">
+			<input type='hidden' name='f_num[]' value=".$row['FNUM'].">
             <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
             <td>".$row['PNAME']."</td>
             <td>".$row['COUNT']."</td>
             <td>".$row['PRICE']*$row['COUNT']."</td></tr>";
+			$k++;
           }
+		  
           ?>
           </table>
+		  <br/>
+		  <table  align="center" cellpadding="5" cellspacing="0" border="1"  bordercolor="#CCEEFF">
+			<tr>
+				<td width="200">이름</td>
+				<td width="600"><input type=text name="username" style="width: 600px"></td>
+			</tr>
+			<tr>
+				<td width="200" >휴대폰 번호</td>
+				<td width="600"><input type=text name="userphone" style="width: 600px"></td>
+			</tr>
+			<tr>
+				<td width="200">배송 주소</td>
+				<td width="600"><input type=text name="useraddress" style="width: 600px"></td>
+			</tr>
+		  </table>
+		  <br/>
             결제금액<strong id = "price"></strong>
           </br>
           <?
 
-            echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>'
-          ?>
+            echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>';
+			echo "</form>";
+		  ?>
         </div>
+		   <script type="text/javascript">
+           function postCart()
+           {
+			   var f = document.getElementsByName("cartform");
+			   var ch =  document.getElementsByName("product[]");
+			   var hidden =  document.getElementsByName("list_check[]");
+			   for(var i = 0 ; i<ch.length ; i++){
+                  if(ch[i].checked == true){
+                    hidden[i].value=1;
+                  }
+				  else
+				    hidden[i].value=0;
+                }
+			   f.submit();
+           }
 
+          </script>
 
         <div>
  <?
@@ -214,6 +255,5 @@
           </table>
       </div>
     </div>  
-
 </body>
 </html>
