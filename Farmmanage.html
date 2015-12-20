@@ -34,8 +34,23 @@ mysql_select_db($db_name, $conn);
                     location.replace("deleteproduct.php?pnum="+a);
             }
         }
+        function func2()
+        {
+            
+        
+                    location.replace("main.html");
+            
+        }
        
     </script>
+    <style>
+#login{
+width: 180px;
+height: 200px;
+padding-right: 30px;
+}
+
+</style>
 <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -148,35 +163,37 @@ mysql_select_db($db_name, $conn);
         </div>
 
         <!--여기까지-->
-
-        <div>
-
+        <br/>
+     <div style="float:right; font-size:20px">
+                <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
+                </div>
+            
+            <div style="float:left;">
             <form enctype="multipart/form-data"  action="manage.php" method="post">
                 <input type="hidden" name="farmnum" value="<?=$fnum?>"> 내 사진 변경하기 :
                 <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
                         document.getElementById('fileName').value = this.value" name="upload"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
                 <input type="hidden" name="mode" value="upload" />
-
-                <br />
-                <br /> 농장 사진 변경하기 :
+                
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div style="float:left;">
+                 농장 사진 변경하기 :
                 <input type="file" class="btn btn-default" class="file_input_hidden"
                     onchange="javascript: document.getElementById('fileName').value = this.value"
                     name="farmpic" />
+                    </div>
                 <br />
-                <br /> 농장 주인의 한마디!&nbsp;&nbsp;
-                <textarea name="mention"><?=$mention?></textarea>
-                <br />
-                <br />
-
-                <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
+                <br /> <br /> <br /> 
+                <h4>멘트 변경 : </h4>&nbsp;&nbsp;
+                <textarea name="mention" style="width:50%; height:50px;"><?=$mention?></textarea>
                 <br />
                 <br />
-                <br />
+               
                 <br />
                 <br />
         
-        </div>
 
         <table align="center" style="font-size: 20px; font-family: 맑은 고딕;">
             <tr>
@@ -223,8 +240,11 @@ mysql_select_db($db_name, $conn);
                 </a><br /> <br /> <br /></td>
             </tr>
         </table>
-
-        <input type="submit" value="저장">
+        <div align="center">
+        <input type=submit class="btn btn-success" value ="저장" >
+            &nbsp;&nbsp;
+        <input type=button class="btn btn-default" onclick="func2();" value ="돌아가기" >
+            </div>
         </form>
     </div>
 </body>
