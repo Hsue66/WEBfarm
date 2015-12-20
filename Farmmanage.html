@@ -121,29 +121,27 @@ mysql_select_db($db_name, $conn);
         </div>
 
 
+        <?
+            $sql ="select pic1, pic2, pic3 from farmpic where fnum=".$fnum;
+            $res=mysql_query($sql);
+            $row = mysql_fetch_array($res);
+            $pic1 = "./photo/".$row['pic1'];
+            $pic2 = "./photo/".$row['pic2'];
+            $pic3 = "./photo/".$row['pic3'];
+        ?>
         <!-- 사진 넘어가는 코드-->
 
         <div id="image_list_1" align="center">
             <div class="clsBannerScreen">
                 <div class="images" style="display: block">
-                    <img src="photo/ex1.png">
+                    <img src=<?=$pic1?>>
                 </div>
                 <div class="images">
-                    <img src="photo/ex2.png">
+                    <img src=<?=$pic2?>>
                 
                 </div>
                 <div class="images">
-                    <img src="photo/ex3.png">
-                
-                </div>
-                <div class="images">
-                    <img src="photo/ex4.png">
-                
-                </div>
-                <div class="images">
-                    <img src="photo/ex5.png">
-                
-                </div>
+                    <img src=<?=$pic3?>>
             </div>
         </div>
 
@@ -160,9 +158,20 @@ mysql_select_db($db_name, $conn);
 
                 <br />
                 <br /> 농장 사진 변경하기 :
-                <input type="file" class="btn btn-default" class="file_input_hidden"
-                    onchange="javascript: document.getElementById('fileName').value = this.value"
-                    name="farmpic" />
+                <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
+                        document.getElementById('fileName').value = this.value" name="farmpic1"/>
+                <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+                <input type="hidden" name="mode" value="farmpic1" />
+
+                <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
+                        document.getElementById('fileName').value = this.value" name="farmpic2"/>
+                <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+                <input type="hidden" name="mode" value="farmpic2" />
+
+                <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
+                        document.getElementById('fileName').value = this.value" name="farmpic3"/>
+                <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+                <input type="hidden" name="mode" value="farmpic3" />
                 <br />
                 <br /> 농장 주인의 한마디!&nbsp;&nbsp;
                 <textarea name="mention"><?=$mention?></textarea>
