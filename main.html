@@ -15,7 +15,7 @@
 <style>
 #login{
 width: 180px;
-height: 300px;
+height: 200px;
 padding-right: 30px;
 }
 
@@ -34,9 +34,9 @@ padding-right: 30px;
     <body background="./photo/back.jpg">
         
         <div id='body1'>
-
-        <center><a href="main.html"><img src="./photo/logo.png" , height="150"></a></center>
-        
+            <img src="photo/mainclear.png" width="300px" style="float:left;">
+            <a href="main.html"><img src="./photo/logo.png" height="150px"></a>
+            
         <?
             $now=$_SESSION['id'];
             
@@ -98,6 +98,7 @@ padding-right: 30px;
         </div>
 		</form>
 		</div>
+            
 		<?}else{ ?>
 		<input type="button" class="btn btn-default" onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
 		<?}?>
@@ -106,7 +107,7 @@ padding-right: 30px;
             
                          
     <!-- 사진 넘어가는 코드-->
- 
+
     <div id="image_list_2" align="center">
         <div class="clsBannerScreen">
             <div class="images" style="display:block">
