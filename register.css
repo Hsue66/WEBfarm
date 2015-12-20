@@ -1,8 +1,22 @@
 #header
 {
+		padding-top: 10px;
+	font-size: 70px;
+	font-family: "배달의민족 한나","맑은 고딕";
 	margin-top: 50px;
 	text-align: center;
 	padding : 5px;
+}
+body
+{
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+#body1
+{
+	margin-left: 200px;
+	margin-right:200px;
+	background-color: white;
 }
 #container
 {
@@ -12,6 +26,7 @@
 
 #strInfo
 {
+	padding-left: 200px;
 	float: center;
 	overflow: hidden;
 }
@@ -30,7 +45,6 @@
 }
 #contents
 {
-	margin-left: 10%;
-	
+	margin-left: 250px;
 	overflow: hidden;
 }

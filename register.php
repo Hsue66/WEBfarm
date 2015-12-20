@@ -1,3 +1,5 @@
+<? include "lib.php";
+include "./connect_db.php";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,8 +15,9 @@
 	.nse_content{width:660px;height:500px}
 	</style>
 </head>
-<body>
-<!-- 상단 네비게이션 바 -->
+<body background="./photo/back.jpg">
+	  <div id="body1">
+       <!-- 상단 네비게이션 바 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
@@ -27,12 +30,28 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
-            <li><a href="#contact">회원가입</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
+            <li> <li><a href="http://localhost/web/logout.php">로그아웃</a></li>;
+            <?
+            }
+          ?>
           </ul>
         </div>
 </div>
+<!-- 상단 네비게이션 바 끝 -->
 	<div id = "header">
 		
 			<? # 추후에 num을 받아서 img를 보일것
@@ -40,10 +59,10 @@
 			$num = $_GET['farmnum'];
 				// DB에서 인자 불러오기
 			?>
-			<h1>판매품목 등록</h1>
+			판매품목 등록
 			
 		</div>
-		
+		</br></br>
 		<div id = "container" align="center">
 			<form  enctype="multipart/form-data"  name="nse" action="add_db_nse.php" method="post">
 				<div id = "strInfo" align="center">
@@ -72,9 +91,12 @@
 					</div>
 				</div>
 			</br>
+			<center>
 			<div id ="contents" align="center">
 				
 				<textarea name="ir1" id="ir1" class="nse_content" ></textarea>
+			</div>
+		</center>
 				<script type="text/javascript">
 				var oEditors = [];
 				nhn.husky.EZCreator.createInIFrame({
@@ -98,8 +120,16 @@
 			<button class="btn btn-default" id="cancel">취소하기</button>
 		</center>
 		</br>
+		</br>
 	</form>
 </div>
+<center>
+<div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
+        </center>
+</div>
+
 </div>
 
 
