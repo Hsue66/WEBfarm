@@ -169,11 +169,11 @@ if($flag!=2)
 
     if (move_uploaded_file($_FILES['farmpic1']['tmp_name'], $filePath.$fileName)) {
 
-       echo $fnum;
-       echo $fileName;
+       //echo $fnum;
+      // echo $fileName;
 
         $sql = "update Farmpic set PIC1 ='".$fileName."' where fnum=".$fnum;
-        echo $sql;
+       // echo $sql;
         $res = mysql_query($sql);
        // echo $sql;
         if($res){
@@ -252,11 +252,11 @@ if($flag!=3)
 
     if (move_uploaded_file($_FILES['farmpic2']['tmp_name'], $filePath.$fileName)) {
 
-       echo $fnum;
-       echo $fileName;
+     //  echo $fnum;
+    //   echo $fileName;
 
         $sql = "update Farmpic set PIC2 ='".$fileName."' where fnum=".$fnum;
-        echo $sql;
+     //   echo $sql;
         $res = mysql_query($sql);
        // echo $sql;
         if($res){
@@ -335,11 +335,11 @@ if($flag!=4)
 
     if (move_uploaded_file($_FILES['farmpic3']['tmp_name'], $filePath.$fileName)) {
 
-       echo $fnum;
-       echo $fileName;
+    //   echo $fnum;
+    //   echo $fileName;
 
         $sql = "update Farmpic set PIC3 ='".$fileName."' where fnum=".$fnum;
-        echo $sql;
+     //   echo $sql;
         $res = mysql_query($sql);
        // echo $sql;
         if($res){

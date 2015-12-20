@@ -124,13 +124,13 @@ padding-right: 30px;
 
         ?>
         <div id="header" align="center">
-            <h1>
+           
                 <img width="100" heigth="100" src=<?=$userphoto?>>
                 <?
                     
                 echo $username, "님의 농장 관리페이지", "<br/>";
                 ?>
-            </h1>
+           
         </div>
 
 <!--slider 시작-->
@@ -229,9 +229,7 @@ padding-right: 30px;
 
                 echo "가격 : ", $data_row['Price'], "<br/>";
 
-
-                 echo "가격 : ", $data_row['Price'], "<br/>";
-                echo "상품 설명 : ", $data_row['Description'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>", "<br/>";
+                echo "&nbsp;&nbsp;&nbsp;&nbsp;", $data_row['Description'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>", "<br/>";
       
 
                 $j++;

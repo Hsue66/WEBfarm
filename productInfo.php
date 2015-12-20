@@ -78,7 +78,7 @@ include "./connect_db.php";?>
 	?>
 
       <div id="header" align="center">
-      <h1>  
+      
       	<?
 
             
@@ -93,23 +93,28 @@ include "./connect_db.php";?>
 	    <?
 	        echo $username, "님의 농장", "<br/>";
 	    ?>
-		</h1>              
+		            
        </div>
-
+   </br>
 	<div class="container">
 		<div id ="img" >
 				
-			<img id="image" src = <?= $PPHOTO?> class="img-rounded">
+			<img id="image" style="height:100%; height:100%;" src = <?= $PPHOTO?> class="img-rounded">
 		</div>
 		
 		<div id = "info">
+		
 		<?
 			$product = $show[PNAME];
-			$pcost = $show[PRICE];
+		
+					$pcost = $show[PRICE];
 			$pcount = $show[PCOUNT];
 			$count = 0;
 		?>	
-		<h1><? echo $product ?></h1>
+		<div style="font-family: '배달의민족 한나','맑은 고딕'; font-size:50px;">
+		<? echo $product ?>
+		
+	</div>
 		가격 : <? echo $pcost ?>	</br></br>						
 		남은 수량 : <? echo $pcount ?>kg	</br>
 		</br>
@@ -131,13 +136,13 @@ include "./connect_db.php";?>
 				})
 				</script>
 			</br>
+			<h4>
 				총 결제금액 : <strong id="totalPrice">0</strong>원
 				<?
 				//echo $var;
 				$count =0;
 				?>
-
-			</br>
+			</h4>
 			</br>
 		<script>
 			function send(){//이 함수를 호출하면
@@ -167,15 +172,20 @@ include "./connect_db.php";?>
 </div>
 		</br></br></br>
 		<div id = "text">
-			<h2>제품 상세 설명</h2>
+		</br>
+			<div style="font-family: '배달의민족 한나','맑은 고딕'; font-size:30px;">
+			제품 상세 설명
+		</div>
 		</br>
 				<? echo "$show[description]" ?>
 			</br>				
 			</div>
 </br></br>
+<center>
 <div id="footer">
             <img src="./photo/copyright.png" height="50px">
         </div>
 	</div>
+	</center>
 </body>
 </html>

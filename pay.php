@@ -78,15 +78,15 @@ $chk_result = mysql_query($chk_sql);
 <!-- 상단 네비게이션 바 끝 -->
 
 <div align="center"  id="header" class="header">
-		<font SIZE="9" color="black" face="돋움">
+		
 		결제 하기
-		</font>
+	
 	</div>
 
 <br/>
 <br/>
-<table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
-	<tr>
+<table id="salet" class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+	<tr align="center" style="font-weight:bold">
 		<td width="300" align="center">제품</td>
 		<td width="200" align="center">판매 농장</td>
 		<td width="150" align="center">수량</td>
@@ -98,10 +98,10 @@ $chk_result = mysql_query($chk_sql);
 $price=0;
 while($row = mysql_fetch_array($chk_result))
 {
-	echo "<tr><td><img src='./photo/".$row['PPHOTO']."' style=\"width:200px;  height:200px;\"></td>
-	<td align='center'>".$row['FNUM']."</td>
-	<td align='center'>".$buy_count."</td>
-	<td align='center'>".$row['PRICE']*$buy_count."</td></tr>";
+	echo "<tr><td style='vertical-align:middle' align='center'><img src='./photo/".$row['PPHOTO']."' style=\"width:200px;  height:200px;\"></td>
+	<td style='vertical-align:middle' align='center'>".$row['FNUM']."</td>
+	<td style='vertical-align:middle' align='center'>".$buy_count."</td>
+	<td style='vertical-align:middle' align='center'>".$row['PRICE']*$buy_count."</td></tr>";
 	
 	$price=$row['PRICE']*$buy_count;
 }

@@ -86,10 +86,10 @@
   
 
     <div class="header" >
-        <h1>마이페이지</h1>
+        마이페이지
     </div>
-    <div id="wrapper">
-      <ul class="tab" id="tab">
+    <div id="wrapper" >
+      <ul class="tab" id="tab" style="font-family: '배달의민족 한나','맑은 고딕'; font-size:30px;">
         <li class="on">장바구니</li>
         <li>주문목록</li>
         <li>예약목록</li>
@@ -121,71 +121,72 @@
             }
 
           </script>
-		  <?
-		  
-		  if(!mysql_fetch_array($res))
-		  {
-			 
-			  echo "<h2>해당 사항 없음.</h2>";
-		  }else{
-		  ?>
+        <?
+        
+        if(!mysql_fetch_array($res))
+        {
+          
+           echo "<h2>해당 사항 없음.</h2>";
+        }else{
+        ?>
           <table id='cartt' class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
-            <tr>
-              <th width ="50">선택</th>
-              <th width="100">제품사진</th>
-              <th width="150">제품명</th>
-              <th width="150">수량</th>
-              <th width="150">가격</th>
+            <tr align="center" style="font-weight:bold">
+              <td width ="50">선택</td>
+              <td width="100">제품사진</td>
+              <td width="150">제품명</td>
+              <td width="150">수량</td>
+              <td width="150">가격</td>
             </tr>
             <tr>
            <?
           $price;
-		  $k=0;
-		  
-		  
-		  echo "<form name=cartform action='mypage_cartpay.php' method='post'>";
+        $k=0;
+        
+        
+        echo "<form name=cartform action='mypage_cartpay.php' method='post'>";
           while($row = mysql_fetch_array($res))
           {
             $tmp.=$row['PPHOTO']."/".$row['PNAME']."/".$row['COUNT']."/".$row['PRICE']."/".$row['PRICE']*$row['COUNT'];
-            echo "<tr><td><input type=checkbox name='product[]' value=".$row['PRICE']*$row['COUNT']." onclick=\"checkfunc();\"></td>
-			<input type='hidden' name='list[]' value=".$row['PNUM'].">
-			<input type='hidden' name='list_check[]' value=".$k.">
-			<input type='hidden' name='buy_count[]' value=".$row['COUNT'].">
-			<input type='hidden' name='f_num[]' value=".$row['FNUM'].">
+            echo "<tr><td style='vertical-align:middle'><input type=checkbox name='product[]' value=".$row['PRICE']*$row['COUNT']." onclick=\"checkfunc();\"></td>
+         <input type='hidden' name='list[]' value=".$row['PNUM'].">
+         <input type='hidden' name='list_check[]' value=".$k.">
+         <input type='hidden' name='buy_count[]' value=".$row['COUNT'].">
+         <input type='hidden' name='f_num[]' value=".$row['FNUM'].">
             <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
-            <td>".$row['PNAME']."</td>
-            <td>".$row['COUNT']."</td>
-            <td>".$row['PRICE']*$row['COUNT']."</td></tr>";
-			$k++;
+            <td style='vertical-align:middle'>".$row['PNAME']."</td>
+            <td style='vertical-align:middle'>".$row['COUNT']."</td>
+            <td style='vertical-align:middle'>".$row['PRICE']*$row['COUNT']."</td></tr>";
+         $k++;
           }
-		  
+        
           ?>
           </table>
-		  <br/>
-		  <table id='cart2t' class="table table-bordered"  align="center" cellpadding="5" cellspacing="0" border="1"  bordercolor="#CCEEFF">
-			<tr>
-				<td width="200">이름</td>
-				<td width="600"><input type=text name="username" style="width: 600px"></td>
-			</tr>
-			<tr>
-				<td width="200" >휴대폰 번호</td>
-				<td width="600"><input type=text name="userphone" style="width: 600px"></td>
-			</tr>
-			<tr>
-				<td width="200">배송 주소</td>
-				<td width="600"><input type=text name="useraddress" style="width: 600px"></td>
-			</tr>
-		  </table>
+        <br/>
+        <table id='cart2t' class="table table-bordered"  align="center" cellpadding="5" cellspacing="0" border="1"  bordercolor="#CCEEFF">
+         <tr>
+            <td width="200">이름</td>
+            <td width="600"><input type=text name="username" style="width: 600px"></td>
+         </tr>
+         <tr>
+            <td width="200" >휴대폰 번호</td>
+            <td width="600"><input type=text name="userphone" style="width: 600px"></td>
+         </tr>
+         <tr>
+            <td width="200">배송 주소</td>
+            <td width="600"><input type=text name="useraddress" style="width: 600px"></td>
+         </tr>
+        </table>
 
-            결제금액<strong id = "price"> 0원 </strong> 
+           <h4> 결제금액<strong id = "price"> 0원 </strong> 
           <?
             echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>';
-			       echo "</form>";
-		  }    ?>
+                echo "</form>";
+        }    ?>
+        </h4>
 
           
         </div>
-		   
+         
 
         <div> 
           <script type="text/javascript">
@@ -205,44 +206,44 @@
            }
 
           </script>
-		<?
+      <?
             $id = $_GET['id'];
             $sql = "select PNAME,PPHOTO,COUNT,ORDERS.PRICE, ADDR, PHONE, CUSTOMER
                       from PRODUCT join ORDERS on ORDERS.PNUM = PRODUCT.PNUM
                       where USERID='".$id."'";
 
             $res = mysql_query($sql);
-			
-			if(!mysql_fetch_array($res)){
-				echo "<h2>해당 사항 없음.</h2>";
-			}else{
+         
+         if(!mysql_fetch_array($res)){
+            echo "<h2>해당 사항 없음.</h2>";
+         }else{
           ?>
 
           <table id="ordert" class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
-            <tr>
-              <th width="100">주문자</th>
-              <th width="100">제품사진</th>
-              <th width="100">제품명</th>
-              <th width="100">수량</th>
-              <th width="100">가격</th>
-              <th width="150">주소</th>
-              <th width="100">전화번호</th>
+            <tr align="center" style="font-weight:bold">
+              <td width="100">주문자</td>
+              <td width="100">제품사진</td>
+              <td width="100">제품명</td>
+              <td width="100">수량</td>
+              <td width="100">가격</td>
+              <td width="150">주소</td>
+              <td width="100">전화번호</td>
 
             </tr>
             <tr>
-			
+         
           <?
           $price=0;
           while($row = mysql_fetch_array($res))
           {
             echo "<tr>
-            <td>".$row['CUSTOMER']."</td>
-            <td><img src='./photo/".$row['PPHOTO']."' width = '20' heigth = '20'></td>
-            <td>".$row['PNAME']."</td>
-            <td>".$row['COUNT']."</td>
-            <td>".$row['PRICE']*$row['COUNT']."</td>
-            <td>".$row['ADDR']."</td>
-            <td>".$row['PHONE']."</td>
+            <td style='vertical-align:middle' >".$row['CUSTOMER']."</td>
+            <td ><img src='./photo/".$row['PPHOTO']."' width = '20' height= '20'></td>
+            <td style='vertical-align:middle'>".$row['PNAME']."</td>
+            <td style='vertical-align:middle'>".$row['COUNT']."</td>
+            <td style='vertical-align:middle'>".$row['PRICE']*$row['COUNT']."</td>
+            <td style='vertical-align:middle'>".$row['ADDR']."</td>
+            <td style='vertical-align:middle'>".$row['PHONE']."</td>
             </tr>";
             
             //$price=$row['PRICE']*$buy_count;
@@ -253,7 +254,7 @@
         </div>
 
 
-			<?}?>
+         <?}?>
         <div> 
         <?
             $id = $_GET['id'];
@@ -263,10 +264,10 @@
             $res = mysql_query($sql);
           ?>
           <table id='reservet'  class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
-            <tr>
-              <th width="100">농장번호</th>
-              <th width="100">시작일자</th>
-              <th width="100">끝일자</th>
+            <tr align="center" style="font-weight:bold">
+              <td width="100">농장번호</td>
+              <td width="100">시작일자</td>
+              <td width="100">종료일자</td>
             </tr>
             <tr>
           <?

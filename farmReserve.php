@@ -84,7 +84,7 @@
 				//$FPHOTO = "./photo/".$show[FPHOTO];
 				$FPHOTO = "./photo/".$f_num."farm.png";	
 				?>		
-				<h1><? echo $f_num ?>번 농장</h1>
+				<? echo $f_num ?>번 농장
 				
 	</div>
 			<div id = "container">
@@ -171,9 +171,9 @@
             location.href="/web/add_reserve.php?fnum=<?=$fnum?>&id=<?=$id?>&start="+start+"&finish="+finish+"&due="+duration;
          }   
         </script>
-		이용달수 : <strong id="duration">0</strong>일
+		이용일수 : <strong id="duration">0</strong>일
 	</br>	
-		총 예약금액 :<h4> <strog id="costcount">0</strong> 원</h4>
+	<h4>	총 예약금액 : <strog id="costcount">0</strong> 원</h4>
 	</br>
 
 		<center>
@@ -186,8 +186,10 @@
 	
 
 	</div>
+	<center>
 <div id="footer">
             <img src="./photo/copyright.png" height="50px">
         </div>
+    </center>
 </body>
 </html>
