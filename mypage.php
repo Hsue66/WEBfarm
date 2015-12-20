@@ -47,8 +47,9 @@
 
 </script>
 
-<body>
-<!-- 상단 네비게이션 바 -->
+<body background="./photo/back.jpg">
+    <div id="body1">
+   <!-- 상단 네비게이션 바 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
@@ -61,12 +62,28 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
-            <li><a href="#contact">회원가입</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
           </ul>
         </div>
 </div>
+<!-- 상단 네비게이션 바 끝 -->
+  
 
     <div class="header" >
         <h1>마이페이지</h1>
@@ -149,34 +166,35 @@
 				<td width="600"><input type=text name="useraddress" style="width: 600px"></td>
 			</tr>
 		  </table>
-		  <br/>
-            결제금액<strong id = "price"></strong>
-          </br>
-          <?
 
+            결제금액<strong id = "price"> 0원 </strong> 
+          <?
             echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>';
-			echo "</form>";
-		  ?>
+			       echo "</form>";
+		      ?>
+
+          
         </div>
-		   <script type="text/javascript">
+		   
+
+        <div> 
+          <script type="text/javascript">
            function postCart()
            {
-			   var f = document.getElementsByName("cartform");
-			   var ch =  document.getElementsByName("product[]");
-			   var hidden =  document.getElementsByName("list_check[]");
-			   for(var i = 0 ; i<ch.length ; i++){
+         var f = document.getElementsByName("cartform");
+         var ch =  document.getElementsByName("product[]");
+         var hidden =  document.getElementsByName("list_check[]");
+         for(var i = 0 ; i<ch.length ; i++){
                   if(ch[i].checked == true){
                     hidden[i].value=1;
                   }
-				  else
-				    hidden[i].value=0;
+          else
+            hidden[i].value=0;
                 }
-			   f.submit();
+         f.submit();
            }
 
           </script>
-
-        <div>
  <?
             $id = $_GET['id'];
             $sql = "select PNAME,PPHOTO,COUNT,ORDERS.PRICE, ADDR, PHONE, CUSTOMER
@@ -216,19 +234,13 @@
             //$price=$row['PRICE']*$buy_count;
           }
           ?>
-          <script>
-            function check()
-            { 
-             // $("#price").text($("#").val());
-            }
-          </script>
           </table>
 
         </div>
 
 
 
-        <div>
+        <div> 
         <?
             $id = $_GET['id'];
             $sql = "select FNUM, SDATE, FDATE
@@ -256,5 +268,9 @@
           </table>
       </div>
     </div>  
+
+
+    </div>  
+
 </body>
 </html>

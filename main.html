@@ -73,38 +73,6 @@ padding-right: 30px;
                     }
                 </script>
 
-        <?if($now==NULL){?>
-      
-
-        <?}else
-        {
-           
-            $que11=mysql_query("SELECT NAME FROM user WHERE USERID='$now'");
-            $loginname = mysql_result($que11, 0);
-            $que10=mysql_query("SELECT UPHOTO FROM user WHERE USERID='$now'");
-            $loginphoto = mysql_result($que10, 0);
-
-        ?><div style="float:right;"><img src="./photo/<?=$loginphoto?>" width="50" height="50" onclick="mypage()"><? echo $loginname, " 님 환영합니다.";?></div>
-          <?}?>
-		<?if(!$_SESSION["id"]){?>
-        <div id="login" style="float: right" style="">
-		<form action="./login.php" method="post">
-		ID<input type=text name=id  class="form-control">
-		PW <input type=password name=password  class="form-control"><br/>
-        <div class = "btn-group">
-       
-		<input type="button" class="btn btn-default" value="회원가입" onclick="location.href='./registry.html'" >
-
-        <input type=submit class="btn btn-success" value ="로그인" >
-        </div>
-		</form>
-		</div>
-            
-		<?}else{ ?>
-            </br>
-		<input type="button" class="btn btn-default" onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
-		<?}?>
-
             
             
                          
@@ -123,8 +91,43 @@ padding-right: 30px;
     </div>
 
     <!--여기까지-->
+     </br></br>
+<div id="logindiv">
+
+        <?if($now==NULL){?>
+      
+
+        <?}else
+        {
+           
+            $que11=mysql_query("SELECT NAME FROM user WHERE USERID='$now'");
+            $loginname = mysql_result($que11, 0);
+            $que10=mysql_query("SELECT UPHOTO FROM user WHERE USERID='$now'");
+            $loginphoto = mysql_result($que10, 0);
+
+        ?><div style="float:right;"><img src="./photo/<?=$loginphoto?>" width="50" height="50" onclick="mypage()"><? echo $loginname, " 님 환영합니다.";?></div>
+          <?}?>
+        <?if(!$_SESSION["id"]){?>
+        <div id="login" style="float: right" style="">
+        <form action="./login.php" method="post">
+        ID<input type=text name=id  class="form-control">
+        PW <input type=password name=password  class="form-control"><br/>
+        <div class = "btn-group">
+       
+        <input type="button" class="btn btn-default" value="회원가입" onclick="location.href='./registry.html'" >
+
+        <input type=submit class="btn btn-success" value ="로그인" >
+        </div>
+        </form>
+        </div>
             
-       </br></br>
+        <?}else{ ?>
+            </br>
+        <input type="button" class="btn btn-default" onclick="location.href='http://localhost/web/logout.php'"; style="float: right" value="로그아웃">
+        <?}?>
+</div>
+
+<div id="farmlist">
         <center><table>
             <tr>
                 <th width="250" height="300"><?if($farm1user==NULL){?><a href="farmReserve.php?farmnum=1"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm1user==$now){?><a href="farmmanage.html?farmnum=1" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=1" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
@@ -137,7 +140,10 @@ padding-right: 30px;
                <th width="250" height="300"><?if($farm6user==NULL){?><a href="farmReserve.php?farmnum=6"><img src="./photo/1.png" width="250" height="300"></a><?}elseif($farm6user==$now){?><a href="farmmanage.html?farmnum=6" ><img src="./photo/1.png" width="250" height="300"></a> <?}else{?><a href="farm.html?farmnum=6" ><img src="./photo/1.png" width="250" height="300"></a> <?}?></th>
             </tr>
         </table></center>
-
+</div>
+        <div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
         </div>
 
         

@@ -8,21 +8,39 @@ body
 {
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	height: 100%;
 }
 #body1
 {
 	margin-left: 200px;
 	margin-right:200px;
 	background-color: white;
+	height: 800px;
 }
 
 #footer
 {
+	margin-bottom: 50px;
 	padding-top: 50px;
 	height: 100px;
 }
-#reserve
+#img
 {
-	margin-right: 100px;
-}
+	float: left;
+	margin-left: 150px;
 
+}
+#cost
+{
+	margin-top: 340px;
+	margin-left: 150px;
+}
+img
+{
+	width: 400px;
+}
+#datepicker
+{
+	float: right;
+	margin-right: 150px;
+}

@@ -19,7 +19,7 @@
         nCount: 5,					//돌아갈 이미지 개수
         isActType: "right",			//움직일 방향 (left, right, up, down)
         nOrderNo: 1,				//초기 이미지
-        nDelay: 4000				//롤링 시간 타임 (1000 = 1초)
+        nDelay: 3000				//롤링 시간 타임 (1000 = 1초)
         
     } );
     //세번째 배너

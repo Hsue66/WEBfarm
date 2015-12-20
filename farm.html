@@ -1,6 +1,4 @@
-<? include "lib.php";
-   include "./connect_db.php";
- ?>
+<? include "lib.php" ?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -22,43 +20,7 @@
 
 </head>
 <body background="./photo/back.jpg">
-    <div id="body1">
-             <!-- 상단 네비게이션 바 -->
-<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-header">
-          <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://localhost/web/main.html">Web farm</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
-            <li><a href="http://localhost/web/login.html">로그인</a></li>
-            <li><a href="#contact">회원가입</a></li>
-             <?
-            if(isset($_SESSION["id"])){
-          ?>
-            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
-            <?
-					$id=trim($_SESSION["id"]);
-					$sql = "select UPHOTO from USER where USERID='$id'";
-					$res=mysql_query($sql) or die(mysql_error());
-					$photo=mysql_fetch_array($res);
-					?>
-                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
-                    
-            <?
-            }
-          ?>
-          </ul>
-        </div>
-</div>
-<div id='content'>
-    <?
+ <?
            
             $fnum = $_GET['farmnum'];
 
@@ -89,6 +51,47 @@
             $username = mysql_result($que2, 0);
              $userphoto = './photo/'.mysql_result($que4, 0);
             ?>
+
+
+    <div id="body1">
+        
+<!-- 상단 네비게이션 바 -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost/web/main.html">Web farm</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
+            <li><a href="http://localhost/web/login.html">로그인</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
+          </ul>
+        </div>
+</div>
+<!-- 상단 네비게이션 바 끝 -->
+
+<div id='content'>
+   
             <div id="header" align="center">
                 
 
@@ -108,23 +111,35 @@
     
     
     
-    <!-- 사진 넘어가는 코드-->
- 
-    <div id="image_list_1" align="center">
-        <div class="clsBannerScreen">
-            <div class="images" style="display:block">
-                <img src="photo/ex1.png">
-            </div>
-            <div class="images"><img id='slide' src="photo/ex2.png"></div>
-            <div class="images"><img id='slide' src="photo/ex3.png"></div>
-            <div class="images"><img id='slide'src="photo/ex4.png"></div>
-            <div class="images"><img id='slide' src="photo/ex5.png"></div>
-        </div>
-    </div>
+  
+<!--slider 시작-->
+     <?
+         $sql ="select pic1, pic2, pic3 from farmpic where fnum=".$fnum;
+        $res=mysql_query($sql);
+         $row = mysql_fetch_array($res);
+        $pic1 = "./photo/".$row['pic1'];
+        $pic2 = "./photo/".$row['pic2'];
+        $pic3 = "./photo/".$row['pic3'];
+     ?>
+        <!-- 사진 넘어가는 코드-->
 
-    <!--여기까지-->
+        <div id="image_list_1" align="center">
+            <div class="clsBannerScreen">
+                <div class="images" style="display: block">
+                    <img src=<?=$pic1?>>
+                </div>
+                <div class="images">
+                    <img src=<?=$pic2?>>
+                
+                </div>
+                <div class="images">
+                    <img src=<?=$pic3?>>
+            </div>
+        </div>
+        <!--여기까지-->
+<!--slider 끝-->
             
-    <div align="right" style="font-size:20px"></br>
+    <div id="reserveb" align="right" style="font-size:20px"></br>
     <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?></br>
                 <input type=button class="btn btn-success" onclick="location.href='http://localhost/web/farmReserve.php?farmnum=<?=$fnum?>'"; value="예약 하기">
              
@@ -162,7 +177,9 @@
             }
         ?>
     <br/><br/> </tr></table>
- 
+        <div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
 </div>
 
 </div>

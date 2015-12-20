@@ -362,5 +362,6 @@ if($flag!=4)
 //     $que3=mysql_query("UPDATE user INNER JOIN farm ON (user.userID=farm.userID) set UPHOTO='$userpic' WHERE fnum=$fnum");
 
 
-echo "<script>location.href='Farmmanage.html?farmnum=$fnum';</script>";
+//echo "<script>location.href='http://localhost/web/Farmmanage.html?farmnum=$fnum';</script>";
+echo "<script>history.back();</script>"
 ?>

@@ -1,5 +1,5 @@
 <? include "lib.php";
- include "./connect_db.php"; ?>
+include "./connect_db.php";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -19,8 +19,9 @@
 
 	</head>
 
-<body>
-<!-- 상단 네비게이션 바 -->
+<body background="./photo/back.jpg">
+	  <div id="body1">
+       <!-- 상단 네비게이션 바 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
@@ -33,32 +34,33 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
-            <li><a href="#contact">회원가입</a></li>
-				  <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
             <?
-					$id=trim($_SESSION["id"]);
-					$sql = "select UPHOTO from USER where USERID='$id'";
-					$res=mysql_query($sql) or die(mysql_error());
-					$photo=mysql_fetch_array($res);
-					?>
-                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
-                 
+            }
+          ?>
           </ul>
         </div>
 </div>
-
-    <div class="header" >
-        <h1>Hyuk's 농장</h1>
-    </div>
+<!-- 상단 네비게이션 바 끝 -->
 
 	<?
 		$p_num = $_GET['pnum'];
 		$f_num = $_GET['fnum'];
 		//$f_num = 3;
 		 
-		
 		
 		 $sql = "select PCOUNT,PNAME,PPHOTO,description,PRICE from product where PNUM=";
 		 $sql .= $p_num." and FNUM=".$f_num;
@@ -74,6 +76,26 @@
 		 $PPHOTO = "./photo/".$show[PPHOTO];
 
 	?>
+
+      <div id="header" align="center">
+      <h1>  
+      	<?
+
+            
+            
+            $sql = "select UPhoto,Name from USER, FARM where USER.USERID=FARM.USERID and FNUM=".$f_num;
+             $res=mysql_query($sql);
+             $user = mysql_fetch_assoc($res);
+              $userphoto = './photo/'.$user[UPhoto];
+              $username=$user[Name];
+          ?>
+         <img width = "100" heigth = "100" src=<?=$userphoto?>>
+	    <?
+	        echo $username, "님의 농장", "<br/>";
+	    ?>
+		</h1>              
+       </div>
+
 	<div class="container">
 		<div id ="img" >
 				
@@ -143,12 +165,17 @@
 			
       </div>
 </div>
-		</br>
+		</br></br></br>
 		<div id = "text">
 			<h2>제품 상세 설명</h2>
 		</br>
 				<? echo "$show[description]" ?>
 			</br>				
 			</div>
+</br></br>
+<div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
+	</div>
 </body>
 </html>

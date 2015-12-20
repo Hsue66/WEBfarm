@@ -69,48 +69,40 @@ padding-right: 30px;
 </head>
 <body background="./photo/back.jpg">
     <div id="body1">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-header">
-                <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-collapse">
-                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                        class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://localhost/web/main.html">Web
-                    farm</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="http://localhost/web/main.html">홈으로</a>
-                    </li>
-                    <li><a href="http://localhost/web/login.html">로그인</a></li>
-                    <li><a href="http://localhost/web/registry.html">회원가입</a></li>
-                    <?
-                    if(isset($_SESSION["id"])){
-                        ?>
-                    <li><input type="button"
-                        onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'"
-                        ;  style="height: 50px; width: 80px; background-color: white; border: solid 0px;"
-                        value="<?=$_SESSION["name"]."님"?>">
-                    
-                    </li>
-					<?
-					$id=trim($_SESSION["id"]);
-					$sql = "select UPHOTO from USER where USERID='$id'";
-					$res=mysql_query($sql) or die(mysql_error());
-					$photo=mysql_fetch_array($res);
-					?>
-                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
-                    
-                    </li>
-                    <?
-                    }
-                    ?>
-                </ul>
-            </div>
+       <!-- 상단 네비게이션 바 -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost/web/main.html">Web farm</a>
         </div>
-        <!--네비게이션바 끝-->
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
+            <li><a href="http://localhost/web/login.html">로그인</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
+            <?
+            }
+          ?>
+          </ul>
+        </div>
+</div>
+<!-- 상단 네비게이션 바 끝 -->
 
         <?
         $que1=mysql_query("SELECT Fname FROM farm WHERE FNum=$fnum");
@@ -141,57 +133,72 @@ padding-right: 30px;
             </h1>
         </div>
 
-
+<!--slider 시작-->
+     <?
+         $sql ="select pic1, pic2, pic3 from farmpic where fnum=".$fnum;
+        $res=mysql_query($sql);
+         $row = mysql_fetch_array($res);
+        $pic1 = "./photo/".$row['pic1'];
+        $pic2 = "./photo/".$row['pic2'];
+        $pic3 = "./photo/".$row['pic3'];
+     ?>
         <!-- 사진 넘어가는 코드-->
 
         <div id="image_list_1" align="center">
             <div class="clsBannerScreen">
                 <div class="images" style="display: block">
-                    <img src="photo/ex1.png">
+                    <img src=<?=$pic1?>>
                 </div>
                 <div class="images">
-                    <img src="photo/ex2.png">
+                    <img src=<?=$pic2?>>
                 
                 </div>
                 <div class="images">
-                    <img src="photo/ex3.png">
-                
-                </div>
-                <div class="images">
-                    <img src="photo/ex4.png">
-                
-                </div>
-                <div class="images">
-                    <img src="photo/ex5.png">
-                
-                </div>
+                    <img src=<?=$pic3?>>
             </div>
         </div>
-
         <!--여기까지-->
+<!--slider 끝-->
+
+
         <br/>
-     <div style="float:right; font-size:20px">
+     <div id="reserve" style="float:right; font-size:20px">
                 <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
                 </div>
-            
-            <div style="float:left;  font-size:20px;">
+            </br>
+              </br>
+              </br>
+              </br>
+            <div style="float:center;  font-size:20px;">
+
             <form enctype="multipart/form-data"  action="manage.php" method="post">
                 <input type="hidden" name="farmnum" value="<?=$fnum?>"> 내 사진 변경하기 :
                 <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
                         document.getElementById('fileName').value = this.value" name="upload"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
                 <input type="hidden" name="mode" value="upload" />
-                
                 </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <div style="float:left; font-size:20px;">
+               
+               </br>
+
+                <div style="float:center; font-size:20px;">
                  농장 사진 변경하기 :
-                <input type="file" class="btn btn-default" class="file_input_hidden"
-                    onchange="javascript: document.getElementById('fileName').value = this.value"
-                    name="farmpic" />
+                <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
+                      document.getElementById('fileName').value = this.value" name="farmpic1"/>
+             <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+             <input type="hidden" name="mode" value="farmpic1" />
+
+          <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
+                    document.getElementById('fileName').value = this.value" name="farmpic2"/>
+      <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+   <input type="hidden" name="mode" value="farmpic2" />
+
+     <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
+            document.getElementById('fileName').value = this.value" name="farmpic3"/>
+     <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+    <input type="hidden" name="mode" value="farmpic3" />
                     </div>
                 <br />
-                <br /> <br /> <br /> 
                 <h4>멘트 변경 : </h4>&nbsp;&nbsp;
                 <textarea name="mention" style="width:50%; height:50px;"><?=$mention?></textarea>
                 <br />
@@ -246,12 +253,17 @@ padding-right: 30px;
                 </a><br /> <br /> <br /></td>
             </tr>
         </table>
+        <br /> <br /> <br />
         <div align="center">
         <input type=submit class="btn btn-success" value ="저장" >
             &nbsp;&nbsp;
         <input type=button class="btn btn-default" onclick="func2();" value ="돌아가기" >
             </div>
         </form>
+
+        <div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
     </div>
 </body>
 </html>

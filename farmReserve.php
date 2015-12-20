@@ -1,4 +1,5 @@
-<? include "lib.php" ?>
+<? include "lib.php";
+	include "./connect_db.php";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,7 +10,7 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="./bootstrap/js/bootstrap.min.js"></script>
 	
-<link rel="stylesheet" type="text/css" href="farmMan.css" />
+<link rel="stylesheet" type="text/css" href="farmReserve.css" />
 
 	<!--datepicker 사용용-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
@@ -26,7 +27,7 @@
 
 <body background="./photo/back.jpg">
     <div id="body1">
-             <!-- 상단 네비게이션 바 -->
+         <!-- 상단 네비게이션 바 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
@@ -39,27 +40,27 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
-            <li><a href="#contact">회원가입</a></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
              <?
-            if(isset($_SESSION["id"])){
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
           ?>
             <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
-            <?
-					$id=trim($_SESSION["id"]);
-					$sql = "select UPHOTO from USER where USERID='$id'";
-					$res=mysql_query($sql) or die(mysql_error());
-					$photo=mysql_fetch_array($res);
-					?>
-                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
-                    
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
             <?
             }
           ?>
           </ul>
         </div>
 </div>
+<!-- 상단 네비게이션 바 끝 -->
 	
 	<div id = "header" >
 
@@ -69,7 +70,7 @@
 
 				?>
 				<?
-				include "./connect_db.php";
+				
 				
 				$sql = "select SIZE,PRICE from FARM where FNUM=";
 				//$sql = "select SIZE,PRICE,FPHOTO from FARM where FNUM=";
@@ -85,11 +86,15 @@
 				?>		
 				<h1><? echo $f_num ?>번 농장</h1>
 				
-			</div>
-			<div id = "container" align= "center">
+	</div>
+			<div id = "container">
 
-				<div id ="img">
-					<img src = <?= $FPHOTO ?>>
+				<div id ="img" >
+					<br />
+
+		</br>
+					<br />
+					<img src = <?= $FPHOTO ?> class="img-rounded">
 				</div>
 
 		 <script>
@@ -101,6 +106,7 @@
             
              $( "#datepicker" ).datepicker({
                 changeMonth: true,
+                minDate: 0,
                 onSelect: function(selectedDate){
                    if(flag == 0){
                       flag = 1;
@@ -135,17 +141,19 @@
            });
         </script>
 		  
-		<div id="datepicker">
-		</br>
+		<div id="datepicker" >
+		
+		<div align="center">
 			<strong id="start">시작날짜</strong>~
 			<strong id="finish">종료날짜</strong>
 			<button id="refresh" class="btn btn-default" onclick="location.href='http://localhost/web/farmReserve.php?farmnum=<?=$f_num?>'">refresh</button>
-		</br>
+		</div>
 		</br>
 		</div>
 
 	</div>
 </br>
+
 		<div id = "cost">
 		면적 : <?=$PSIZE ?>평
 		</br>
@@ -169,13 +177,17 @@
 	</br>
 
 		<center>
-		<div class = "btn-group">
+		<div class = "btn-group" align="center">
 		<button id = "reserve" class="btn btn-success" onclick="goreserve()">예약하기</button>
       	<button id = "back" class="btn btn-default" onclick="history.back()">돌아가기</button>			
 		</div>
 		</center>
 
-	</div>
+	
 
+	</div>
+<div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
 </body>
 </html>

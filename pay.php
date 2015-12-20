@@ -25,57 +25,24 @@ $chk_result = mysql_query($chk_sql);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style>
-a:link     {color:green;text-decoration:none} 
-a:visited  {color:green;text-decoration:none} 
-a:active   {color:green;text-decoration:none} 
-a:hover    {color:green;text-decoration:none} 
-
-
-
-</style>
-<div>
-	<br/>
-	<br/>
-	<br/>
-	<div align="center" class="header">
-	<font SIZE="9" color="black" face="돋움">
-	결제 하기
-	</font>
-	</div>
+<title>결제하기</title>
 	<HR size="3" color="black" WIDTH="100%">
 		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="./bootstrap/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="pinfo.css"/>
+		<link rel="stylesheet" type="text/css" href="pay.css"/>
+
 		  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		  <script src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
 		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		  <link rel="stylesheet" href="/resources/demos/style.css">
-
-
-
-<!--
-<div>
-	<font  SIZE="6" color="green" face="궁서체">
-	   <a href="http://localhost/web/main.html" align="left">WEB FARM</a>
-	</font>
-<input type="button"  onclick="location.href='http://localhost//web//mypage.html'";	style="height: 40px; width:80px; background-color: white; float: right; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>">
-<img src="./photo/user.jpg" width="40" height="40" style="float: right;">
-<div>
-	<br/>
-	<br/>
-	<div align="center">
-	<font SIZE="9" color="black" face="돋움">
-	결제 하기
-	</font>
-	</div>
-	<HR size="3" color="black" WIDTH="100%">
---> 
 </head>
-<body>
+
+<body background="./photo/back.jpg">
+	  <div id="body1">
+ <!-- 상단 네비게이션 바 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <!-- 브라우저가 좁아졋을때 나오는 버튼(클릭시 메뉴출력) -->
@@ -88,21 +55,33 @@ a:hover    {color:green;text-decoration:none}
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost/web/main.html">홈으로</a></li>
+            <li class="active">
+            <a href="http://localhost/web/main.html">홈으로</a></li>
+            <? if(!isset($_SESSION["id"])){ ?>
             <li><a href="http://localhost/web/login.html">로그인</a></li>
-            <li><a href="#contact">회원가입</a></li>
-			  <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><a href="http://localhost/web/registry.html">회원가입</a></li>
+             <?
+            }else{
+            $id = $_SESSION["id"];
+            $sql = "select UPhoto from USER where USERID ='".$id."'";
+             $res=mysql_query($sql);
+              $loginphoto = './photo/'.mysql_result($res, 0);
+          ?>
+            <li><input type="button"  onclick="location.href='http://localhost//web//mypage.php?id=<?=$_SESSION['id']?>'";  style="height: 50px; width:80px; background-color: white; border:solid 0px;" value="<?=$_SESSION["name"]."님"?>"></li>
+            <li><img src=<?=$loginphoto?> style="width: 40px; height: 50px;"></li>
             <?
-					$id=trim($_SESSION["id"]);
-					$sql = "select UPHOTO from USER where USERID='$id'";
-					$res=mysql_query($sql) or die(mysql_error());
-					$photo=mysql_fetch_array($res);
-					?>
-                    <li><img src="./photo/<?=$photo['UPHOTO']?>" style="width: 40px; height: 50px;">
-                 
+            }
+          ?>
           </ul>
         </div>
 </div>
+<!-- 상단 네비게이션 바 끝 -->
+
+<div align="center"  id="header" class="header">
+		<font SIZE="9" color="black" face="돋움">
+		결제 하기
+		</font>
+	</div>
 
 <br/>
 <br/>
@@ -155,6 +134,8 @@ while($row = mysql_fetch_array($chk_result))
 		<input type=hidden name="buy_count" value="<?=$buy_count?>">
 		<input type=hidden name="price" value="<?=$price?>"> 
 
+</br>
+</br>
 <div style="float: right;">
 총 상품금액 : <?=$price?>원 
 
@@ -187,5 +168,10 @@ window.history.back();
 
 
 </script>
+
+<div id="footer">
+            <img src="./photo/copyright.png" height="50px">
+        </div>
+</div>
 </body>
 </html>

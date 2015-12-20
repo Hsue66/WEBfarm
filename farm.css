@@ -1,3 +1,8 @@
+#reserveb
+{
+	margin-right: 100px;
+}
+
 #header
 {
 	margin-top: 50px;
@@ -11,10 +16,13 @@ body
 }
 #body1
 {
-	margin-left: 100px;
-	margin-right:100px;
+margin-left: 200px;
+	margin-right:200px;
 	background-color: white;
-	height: 1000px;
 }
-
+#footer
+{
+	padding-top: 50px;
+	height: 100px;
+}
 
