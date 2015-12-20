@@ -121,6 +121,14 @@
             }
 
           </script>
+		  <?
+		  
+		  if(!mysql_fetch_array($res))
+		  {
+			 
+			  echo "<h2>해당 사항 없음.</h2>";
+		  }else{
+		  ?>
           <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
               <th width ="50">선택</th>
@@ -133,6 +141,8 @@
            <?
           $price;
 		  $k=0;
+		  
+		  
 		  echo "<form name=cartform action='mypage_cartpay.php' method='post'>";
           while($row = mysql_fetch_array($res))
           {
@@ -171,7 +181,7 @@
           <?
             echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>';
 			       echo "</form>";
-		      ?>
+		  }    ?>
 
           
         </div>
@@ -195,13 +205,17 @@
            }
 
           </script>
- <?
+		<?
             $id = $_GET['id'];
             $sql = "select PNAME,PPHOTO,COUNT,ORDERS.PRICE, ADDR, PHONE, CUSTOMER
                       from PRODUCT join ORDERS on ORDERS.PNUM = PRODUCT.PNUM
                       where USERID='".$id."'";
 
             $res = mysql_query($sql);
+			
+			if(!mysql_fetch_array($res)){
+				echo "<h2>해당 사항 없음.</h2>";
+			}else{
           ?>
 
           <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
@@ -239,7 +253,7 @@
         </div>
 
 
-
+			<?}?>
         <div> 
         <?
             $id = $_GET['id'];

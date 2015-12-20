@@ -1119,7 +1119,10 @@ img {
 }
 .img-rounded {
   border-radius: 6px;
-}
+  max-width: 100%;
+  height: auto;
+	
+ }
 .img-thumbnail {
   display: inline-block;
   max-width: 100%;
