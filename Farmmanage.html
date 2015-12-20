@@ -168,7 +168,7 @@ padding-right: 30px;
                 <? echo "사용 기간 : ", $sdate, "~" , $fdate; ?>
                 </div>
             
-            <div style="float:left;">
+            <div style="float:left;  font-size:20px;">
             <form enctype="multipart/form-data"  action="manage.php" method="post">
                 <input type="hidden" name="farmnum" value="<?=$fnum?>"> 내 사진 변경하기 :
                 <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
@@ -178,7 +178,7 @@ padding-right: 30px;
                 
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <div style="float:left;">
+                <div style="float:left; font-size:20px;">
                  농장 사진 변경하기 :
                 <input type="file" class="btn btn-default" class="file_input_hidden"
                     onchange="javascript: document.getElementById('fileName').value = this.value"
