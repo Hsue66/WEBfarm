@@ -31,7 +31,7 @@ for($i=0;$i<sizeof($test);$i++){
   if($list_check[$i]==1){
     echo $test[$i] . "<br>";
 	$sql = "insert into ORDERS
-		 values ('".trim($f_num[$i])."','".trim($_SESSION['id'])."','".trim($test[$i])."','".trim($count[$i])."','".trim($check[$i])."','".trim($user_name)."','".trim($user_phone)."','".trim($user_address)."')";
+		 values ('".trim($f_num[$i])."','".trim($_SESSION['id'])."','".trim($test[$i])."','".trim($count[$i])."','".trim($check[$i])."','".trim($user_address)."','".trim($user_phone)."','".trim($user_name)."')";
     mysql_query($sql) or die(mysql_error);	
 	$sql = "delete 
 		    from cart
