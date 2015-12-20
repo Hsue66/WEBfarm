@@ -26,6 +26,7 @@ $user_address=mysql_real_escape_string($address);
 for($i=0;$i<sizeof($check);$i++){ 
   echo $check[$i] . "<br>";  
 } 
+
 for($i=0;$i<sizeof($test);$i++){ 
   if($list_check[$i]==1){
     echo $test[$i] . "<br>";

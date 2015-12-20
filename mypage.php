@@ -198,6 +198,7 @@
 
             </tr>
             <tr>
+			
           <?
           $price=0;
           while($row = mysql_fetch_array($res))
