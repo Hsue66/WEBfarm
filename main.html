@@ -83,7 +83,8 @@ padding-right: 30px;
             $loginname = mysql_result($que11, 0);
             $que10=mysql_query("SELECT UPHOTO FROM user WHERE USERID='$now'");
             $loginphoto = mysql_result($que10, 0);
-        ?><img src="./photo/<?=$loginphoto?>" width="50" height="50" onclick="mypage()"><? echo $loginname, " 님 환영합니다.";?>
+
+        ?><div style="float:right;"><img src="./photo/<?=$loginphoto?>" width="50" height="50" onclick="mypage()"><? echo $loginname, " 님 환영합니다.";?></div>
           <?}?>
 		<?if(!$_SESSION["id"]){?>
         <div id="login" style="float: right" style="">
@@ -100,6 +101,7 @@ padding-right: 30px;
 		</div>
             
 		<?}else{ ?>
+            </br>
 		<input type="button" class="btn btn-default" onclick="location.href='http://localhost/web/logout.php'";	style="float: right" value="로그아웃">
 		<?}?>
 
