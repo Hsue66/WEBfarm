@@ -151,12 +151,12 @@ mysql_select_db($db_name, $conn);
 
         <div>
 
-            <form action="manage.php" method="post">
+            <form enctype="multipart/form-data"  action="manage.php" method="post">
                 <input type="hidden" name="farmnum" value="<?=$fnum?>"> 내 사진 변경하기 :
                 <input type="file" class="btn btn-default" class="file_input_hidden" onchange="javascript: 
-                        document.getElementById('fileName').value = this.value" name="userpic"/>
+                        document.getElementById('fileName').value = this.value" name="upload"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
-                <input type="hidden" name="mode" value="userpic" />
+                <input type="hidden" name="mode" value="upload" />
 
                 <br />
                 <br /> 농장 사진 변경하기 :
