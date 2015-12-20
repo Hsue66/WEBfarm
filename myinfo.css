@@ -9,6 +9,34 @@ body
    background-repeat: no-repeat;
    background-size: 100% 100%;
 }
+#cartt
+{
+   
+   width: 80%;
+   vertical-align:center;
+   vertical-align:middle;
+}
+#car2t
+{
+   
+   width: 80%;
+   vertical-align:center;
+   vertical-align:middle;
+}
+#reservet
+{
+   
+   width: 80%;
+   vertical-align:center;
+   vertical-align:middle;
+}
+#ordert
+{
+
+   width: 80%;
+   vertical-align:center;
+   vertical-align:middle;
+}
 #footer
 {
    padding-top: 50px;

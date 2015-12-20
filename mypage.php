@@ -129,7 +129,7 @@
 			  echo "<h2>해당 사항 없음.</h2>";
 		  }else{
 		  ?>
-          <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+          <table id='cartt' class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
               <th width ="50">선택</th>
               <th width="100">제품사진</th>
@@ -162,7 +162,7 @@
           ?>
           </table>
 		  <br/>
-		  <table  align="center" cellpadding="5" cellspacing="0" border="1"  bordercolor="#CCEEFF">
+		  <table id='cart2t' class="table table-bordered"  align="center" cellpadding="5" cellspacing="0" border="1"  bordercolor="#CCEEFF">
 			<tr>
 				<td width="200">이름</td>
 				<td width="600"><input type=text name="username" style="width: 600px"></td>
@@ -218,7 +218,7 @@
 			}else{
           ?>
 
-          <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+          <table id="ordert" class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
               <th width="100">주문자</th>
               <th width="100">제품사진</th>
@@ -262,7 +262,7 @@
                       where USERID='".$id."'";
             $res = mysql_query($sql);
           ?>
-          <table align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
+          <table id='reservet'  class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr>
               <th width="100">농장번호</th>
               <th width="100">시작일자</th>
