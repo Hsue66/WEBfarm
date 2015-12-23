@@ -95,7 +95,7 @@
 
 		</br>
 					<br />
-					<img src = <?= $FPHOTO ?> class="img-rounded">
+					<img src = <?= $FPHOTO ?>  class="img-rounded">
 				</div>
 
 		 <script>
@@ -154,12 +154,12 @@
 
 	</div>
 </br>
-
+		
 		<div id = "cost">
-		면적 : <?=$PSIZE ?>평
-		</br>
-		대여비(반년) : <strong><?=$PRICE ?></strong>
-	</br>	
+			<h4>
+		면적 : <?=$PSIZE ?>평</h4>
+		<h4>
+		대여비(반년) : <strong><?=$PRICE ?></strong></h4>
 		<script>
 			function goreserve(){
 				var start = $("#start").text();
@@ -172,7 +172,9 @@
             location.href="/web/add_reserve.php?fnum=<?=$fnum?>&id=<?=$id?>&start="+start+"&finish="+finish+"&due="+duration;
          }   
         </script>
+        <h4>
 		이용일수 : <strong id="duration">0</strong>일
+	</h4>
 	</br>	
 	<h4>	총 예약금액 : <strog id="costcount">0</strong> 원</h4>
 	</br>

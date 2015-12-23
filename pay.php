@@ -140,9 +140,9 @@ while($row = mysql_fetch_array($chk_result))
 <div style="float: right;">
 총 상품금액 : <?=$price?>원 
 
-	<input type="submit" value="결제하기" style="height: 30px; width:80px; background-color: green; font-size='5'">
+	<input  class="btn btn-success"type="submit" value="결제하기" style="height: 30px; width:80px; background-color: green; font-size='5'">
 </form>
-<td align="right" ><input type="button" onclick="goBack()" style="height: 30px; width:80px;" value="취소하기"></button></td>
+<td align="right" ><input type="button"  class="btn btn-default" onclick="goBack()" style="height: 30px; width:80px;" value="취소하기"></button></td>
 </div>
 
 <br/><br/><br/><br/>
@@ -150,12 +150,7 @@ while($row = mysql_fetch_array($chk_result))
 
 
 <footer>
-  <div style="float: right">
-	made by 손웅배, 정주혁, 홍수민 &nbsp sw.kau.ac.kr
-  </div>
-  <div style="float: right">
-	<img src="./images/logo.png" style="width: 30px; height: 30px;">
-  </div>
+  
 </footer>
 <script>
 function goBack()
@@ -170,9 +165,11 @@ window.history.back();
 
 </script>
 
+<center>
 <div id="footer">
             <img src="./photo/copyright.png" height="50px">
         </div>
+</center>
 </div>
 </body>
 </html>

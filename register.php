@@ -116,12 +116,21 @@ include "./connect_db.php";?>
 		</script> 
 		</br>
 		</br>
+		<script>
+			function cancel()
+			{
+				history.back();
+			}
+		</script>
 		<center><input type="submit"  value="등록하기" class="btn btn-success" onclick="submitContents(this);" />
-			<button class="btn btn-default" id="cancel">취소하기</button>
+			
 		</center>
 		</br>
-		</br>
 	</form>
+	<button class="btn btn-default" id="cancel" onclick="history.back()">취소하기</button>
+</br>
+		</br>
+		</br>
 </div>
 <center>
 <div id="footer">

@@ -123,11 +123,11 @@
           </script>
         <?
         
-        if(!mysql_fetch_array($res))
-        {
+       // if(!mysql_fetch_array($res))
+       // {
           
-           echo "<h2>해당 사항 없음.</h2>";
-        }else{
+       //    echo "<h2>해당 사항 없음.</h2>";
+       // }else{
         ?>
           <table id='cartt' class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr align="center" style="font-weight:bold">
@@ -181,7 +181,7 @@
           <?
             echo '<button id="buy" name="buy" class="btn btn-success" value='.$tmp.' onclick="postCart()">구매하기</button>';
                 echo "</form>";
-        }    ?>
+       // }    ?>
         </h4>
 
           
@@ -214,9 +214,9 @@
 
             $res = mysql_query($sql);
          
-         if(!mysql_fetch_array($res)){
-            echo "<h2>해당 사항 없음.</h2>";
-         }else{
+        // if(!mysql_fetch_array($res)){
+        //    echo "<h2>해당 사항 없음.</h2>";
+       //  }else{
           ?>
 
           <table id="ordert" class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
@@ -254,7 +254,7 @@
         </div>
 
 
-         <?}?>
+         <?//}?>
         <div> 
         <?
             $id = $_GET['id'];
@@ -262,6 +262,7 @@
                       from RESERVE
                       where USERID='".$id."'";
             $res = mysql_query($sql);
+
           ?>
           <table id='reservet'  class="table table-bordered" align="center" cellpadding="5" cellspacing="0" border="1" bordercolor="#CCEEFF">
             <tr align="center" style="font-weight:bold">

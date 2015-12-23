@@ -117,7 +117,7 @@ include "./connect_db.php";?>
 		
 	</div>
 		가격 : <? echo $pcost ?>	</br></br>						
-		남은 수량 : <? echo $pcount ?>kg	</br>
+		남은 수량 : <? echo $pcount ?>g	</br>
 		</br>
 		수량
 			<input id="spinner" type="text"  min="1"/>
